@@ -1,639 +1,2727 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>💪 MEU TREINO — Sua Jornada Fitness Online</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💪 MEU TREINO — Sua Jornada Fitness Online</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            obsidian: '#09090b',
+            graphite: '#121215',
+            surface: '#18181c',
+            surfaceHover: '#202026',
+            borderSubtle: '#27272e',
+            accentBlue: '#3b82f6',
+            accentRed: '#ef4444',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    /* Ajustes finos de rolagem e animação */
+    html {
+      scroll-behavior: smooth;
+      background-color: #09090b;
+      color: #fafafa;
+    }
+    /* Animação sutil para conclusão de série/cronômetro */
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.45); }
+      70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+    .timer-active {
+      animation: pulse-ring 1.8s infinite;
+    }
+    /* Contorno de alto contraste para leitura nítida da logo sobre fundo escuro */
+    .logo-title-outline {
+      color: #0B2244;
+      -webkit-text-stroke: 2px #f8fafc;
+      paint-order: stroke fill;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.85), 0 0 1px #ffffff;
+    }
+    .logo-subtitle-outline {
+      color: #e2e8f0;
+      -webkit-text-stroke: 0.75px #09090b;
+      paint-order: stroke fill;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    }
+  </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+<body class="bg-obsidian text-zinc-100 font-sans antialiased min-h-screen selection:bg-blue-500/30 selection:text-blue-200">
 
-    <!-- Header / Logo Principal -->
-    <header class="w-full bg-zinc-900/90 border-b border-zinc-800 py-6 px-4 sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-4xl mx-auto flex flex-col items-center justify-center text-center">
-            <!-- Logo Transparente e com Contorno Nítido -->
-            <div class="flex items-center justify-center mb-3">
-                <div class="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-blue-600/10 rounded-2xl p-2 border border-blue-500/40 shadow-lg shadow-blue-900/30">
-                    <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        <!-- Escudo -->
-                        <path d="M50 10 L85 25 V55 C85 75 50 90 50 90 C50 90 15 75 15 55 V25 Z" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linejoin="round"/>
-                        <path d="M50 14 L81 28 V54 C81 72 50 86 50 86 C50 86 19 72 19 54 V28 Z" fill="#1e3a8a" opacity="0.4"/>
-                        <!-- Atleta / Seta -->
-                        <path d="M35 55 L50 40 L70 25" fill="none" stroke="#f97316" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="58" cy="32" r="6" fill="#60a5fa" stroke="#ffffff" stroke-width="1.5"/>
-                        <path d="M30 65 C38 52 48 48 65 35" fill="none" stroke="#60a5fa" stroke-width="5" stroke-linecap="round"/>
-                        <path d="M62 25 L72 25 L72 35" fill="none" stroke="#f97316" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-            </div>
-            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white drop-shadow-md">
-                MEU <span class="text-blue-500">TREINO</span>
-            </h1>
-            <p class="text-xs sm:text-sm font-medium text-zinc-300 tracking-wider uppercase mt-1 drop-shadow">
-                Sua Jornada Fitness Online
-            </p>
+  <!-- ========================================================= -->
+  <!-- VIEW 1: TELA INICIAL (HOME — LOGO + LISTA DE ALUNOS)      -->
+  <!-- ========================================================= -->
+  <main id="home-view" class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-14 space-y-10 transition-opacity duration-300">
+
+    <!-- Topo: Logo MEU TREINO sem fundo (transparente) com borda no emblema e nas letras -->
+    <section aria-label="Identidade Visual Meu Treino" class="flex flex-col items-center justify-center">
+      <div class="w-full max-w-md py-2 sm:py-4 flex flex-col items-center text-center relative">
+        <!-- Brilhos sutis ambientais atrás da logo transparente -->
+        <div class="absolute top-4 left-1/4 w-36 h-36 bg-sky-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-6 right-1/4 w-36 h-36 bg-orange-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Logo SVG vetorial sem fundo e com contorno branco nítido -->
+        <svg viewBox="0 0 220 155" class="w-44 sm:w-52 h-auto drop-shadow-[0_6px_18px_rgba(0,0,0,0.85)] relative z-10" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Meu Treino">
+          <defs>
+            <linearGradient id="shieldBlue" x1="55" y1="15" x2="110" y2="135" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00B4F0" />
+              <stop offset="100%" stop-color="#0052B4" />
+            </linearGradient>
+            <linearGradient id="shieldOrange" x1="165" y1="20" x2="110" y2="142" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FF7A2F" />
+              <stop offset="100%" stop-color="#F03E18" />
+            </linearGradient>
+            <linearGradient id="runnerGrad" x1="70" y1="25" x2="130" y2="120" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00A8EC" />
+              <stop offset="100%" stop-color="#00479E" />
+            </linearGradient>
+            <linearGradient id="arrowGrad" x1="75" y1="105" x2="182" y2="22" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#E63917" />
+              <stop offset="55%" stop-color="#FF5E24" />
+              <stop offset="100%" stop-color="#FF8533" />
+            </linearGradient>
+          </defs>
+
+          <!-- Grupo do emblema com contorno claro para destaque no fundo escuro -->
+          <g stroke="#F8FAFC" stroke-width="2.2" stroke-linejoin="round" style="paint-order: stroke fill;">
+            <!-- Metade Esquerda do Escudo (Azul) -->
+            <path d="M107 14 C91 21 72 25 54 27 C54 62 63 90 80 110 L86 103 C72 86 64 62 64 35 C79 33 93 29 107 23 Z" fill="url(#shieldBlue)" />
+
+            <!-- Metade Direita do Escudo (Laranja) -->
+            <path d="M133 21 C144 24 155 26 166 27 C166 32 166 37 165 42 L156 45 C156 41 156 38 156 35 C148 34 140 32 132 30 Z" fill="url(#shieldOrange)" />
+            <path d="M164 56 C160 95 141 124 110 143 C101 137 93 130 86 122 L94 116 C99 122 104 127 110 131 C134 115 150 91 154 60 Z" fill="url(#shieldOrange)" />
+
+            <!-- Cabeça do Corredor -->
+            <circle cx="121" cy="24" r="10.5" fill="url(#runnerGrad)" />
+
+            <!-- Braço esquerdo / Tronco / Perna traseira estilizados -->
+            <path d="M72 64 C74 44 92 33 111 38 C120 40 124 48 121 57 L111 73 L99 63 L107 50 C96 46 82 52 72 64 Z" fill="url(#runnerGrad)" />
+
+            <!-- Perna dianteira em impulso -->
+            <path d="M98 71 L113 85 C101 102 82 117 55 133 C67 113 81 92 98 71 Z" fill="url(#runnerGrad)" />
+
+            <!-- Perna dobrada inferior -->
+            <path d="M126 78 C134 86 134 98 124 106 C115 113 103 115 92 114 C103 108 113 101 118 92 L126 78 Z" fill="url(#runnerGrad)" />
+
+            <!-- Braço direito estendido -->
+            <path d="M124 44 L138 51 L130 60 L121 54 Z" fill="url(#runnerGrad)" />
+          </g>
+
+          <!-- Seta Ascendente Laranja atravessando o escudo com borda branca -->
+          <path d="M77 101 L101 77 L117 92 L160 44 L151 36 L181 26 L173 56 L165 49 L118 104 L101 89 L81 106 Z" fill="url(#arrowGrad)" stroke="#F8FAFC" stroke-width="2.5" stroke-linejoin="round" style="paint-order: stroke fill;" />
+        </svg>
+
+        <!-- Tipografia da Marca com contorno branco nítido para leitura perfeita -->
+        <div class="mt-1 leading-none tracking-tight select-none relative z-10">
+          <div class="text-4xl sm:text-5xl font-extrabold logo-title-outline">MEU</div>
+          <div class="text-4xl sm:text-5xl font-extrabold logo-title-outline -mt-0.5">TREINO</div>
         </div>
+        <p class="mt-2.5 text-xs sm:text-sm font-semibold tracking-wide logo-subtitle-outline relative z-10">
+          Sua Jornada Fitness Online
+        </p>
+      </div>
+    </section>
+
+    <!-- Seleção de Alunos (Fiel ao rascunho: Carol | Luciene | +) -->
+    <section aria-labelledby="titulo-alunos" class="space-y-5">
+      <div class="flex items-center justify-between px-1">
+        <div>
+          <h1 id="titulo-alunos" class="text-lg sm:text-xl font-bold text-white">
+            Alunos cadastrados
+          </h1>
+          <p class="text-xs sm:text-sm text-zinc-400">
+            Selecione um aluno para abrir a ficha de treino ou adicione um novo perfil.
+          </p>
+        </div>
+        <span id="students-count-badge" class="text-xs font-semibold px-3 py-1 rounded-full bg-zinc-900 text-zinc-300 border border-zinc-800">
+          2 alunos
+        </span>
+      </div>
+
+      <!-- Grid Horizontal / Responsivo inspirada no rascunho -->
+      <div id="students-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
+        <!-- Cards dos alunos + botão "+" renderizados via JavaScript -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================= -->
+  <!-- VIEW 2: PÁGINA DA FICHA DE TREINO (CAROL / ALUNOS)        -->
+  <!-- ========================================================= -->
+  <div id="workout-view" class="hidden max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-8">
+
+    <!-- Barra Superior de Navegação (Voltar para Alunos) -->
+    <div class="flex items-center justify-between">
+      <button
+        id="back-to-home-btn"
+        type="button"
+        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-graphite hover:bg-surfaceHover active:scale-95 text-zinc-200 border border-borderSubtle shadow-md transition cursor-pointer"
+      >
+        <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        ← Voltar para Alunos
+      </button>
+
+      <span class="text-xs font-medium text-zinc-500 hidden sm:inline">
+        MEU TREINO · Painel do Aluno
+      </span>
+    </div>
+
+    <!-- 1. CABEÇALHO -->
+    <header class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-7 shadow-xl relative overflow-hidden">
+      <!-- Brilho decorativo sutil no topo -->
+      <div class="absolute -top-24 -right-24 w-56 h-56 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-56 h-56 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 space-y-4">
+        <!-- Badges / Subtítulo -->
+        <div class="flex flex-wrap items-center gap-2 text-xs font-semibold tracking-wider uppercase">
+          <span id="header-student-badge" class="px-2.5 py-1 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30">
+            CAROL
+          </span>
+          <span class="text-zinc-500">·</span>
+          <span class="px-2.5 py-1 rounded-full bg-red-500/15 text-red-400 border border-red-500/30">
+            Fichas A · B · C
+          </span>
+          <span class="text-zinc-500 hidden sm:inline">·</span>
+          <span id="header-meta-badge" class="px-2.5 py-1 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700/80">
+            3X SEMANA · 50 MIN · INICIANTE
+          </span>
+        </div>
+
+        <!-- Título Principal + Botão de Reiniciar Treino -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 id="header-main-title" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+              💪 MEU TREINO — CAROL
+            </h1>
+            <p id="header-main-subtitle" class="text-sm text-zinc-400 mt-1">
+              Planejamento completo com Treinos A, B e C, cronômetros e acompanhamento.
+            </p>
+          </div>
+          <button
+            id="reset-workout-btn"
+            type="button"
+            class="self-start sm:self-auto inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-zinc-800/90 hover:bg-zinc-700/90 active:scale-95 text-zinc-200 border border-zinc-700 transition cursor-pointer"
+            title="Desmarcar exercícios da ficha atual e zerar cronômetros"
+          >
+            <svg class="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            Reiniciar ficha atual
+          </button>
+        </div>
+
+        <!-- Barra de Progresso do Dia -->
+        <div class="pt-2 space-y-2">
+          <div class="flex items-center justify-between text-xs font-medium">
+            <span id="progress-label" class="text-zinc-400">Progresso do Treino A hoje</span>
+            <span id="progress-text" class="text-blue-400 font-semibold">0/7 concluídos</span>
+          </div>
+          <div class="w-full h-2.5 bg-zinc-800/90 rounded-full overflow-hidden p-0.5 border border-zinc-700/50">
+            <div
+              id="progress-bar"
+              class="h-full bg-gradient-to-r from-blue-500 to-red-500 rounded-full transition-all duration-500 ease-out"
+              style="width: 0%"
+            ></div>
+          </div>
+          <div id="congrats-banner" class="hidden pt-1">
+            <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm font-medium flex items-center gap-2">
+              <span>🎉</span>
+              <span id="congrats-text">Parabéns, Carol! Você concluiu todos os exercícios desta ficha hoje.</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="flex-grow max-w-4xl w-full mx-auto p-4 sm:p-6">
+    <!-- 2. RESUMO DA FICHA DO ALUNO ATIVO -->
+    <section aria-labelledby="perfil-heading" class="space-y-3">
+      <h2 id="perfil-heading" class="text-sm font-bold uppercase tracking-wider text-zinc-400 px-1">
+        Resumo da ficha da Carol
+      </h2>
+      <div id="summary-cards-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <!-- Cards de resumo renderizados dinamicamente -->
+      </div>
+      <div id="summary-priority-box" class="bg-graphite/90 border border-borderSubtle rounded-2xl p-4 text-xs sm:text-sm text-zinc-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <!-- Prioridade e tag clínica renderizadas dinamicamente -->
+      </div>
+    </section>
 
-        <!-- TELA 1: SELECIONAR ALUNO (Home) -->
-        <div id="home-view" class="space-y-6">
-            <div class="text-center py-6">
-                <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">Selecione o Aluno</h2>
-                <p class="text-sm text-zinc-400">Escolha uma ficha abaixo para visualizar o treino detalhado</p>
-            </div>
+    <!-- 3. SELETOR DE FICHAS (TREINO A · TREINO B · TREINO C) + EXERCÍCIOS -->
+    <section aria-labelledby="treino-heading" class="space-y-4">
+      <!-- Abas de seleção rápida dos treinos -->
+      <div class="grid grid-cols-3 gap-2.5 bg-graphite p-2 rounded-2xl border border-borderSubtle shadow-md" role="tablist" aria-label="Selecionar Ficha de Treino">
+        <button
+          id="tab-btn-A"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          onclick="switchWorkoutTab('A')"
+          class="py-3 px-2 sm:px-4 rounded-xl text-center transition cursor-pointer bg-blue-600 text-white shadow-md"
+        >
+          <span class="block text-xs sm:text-sm font-extrabold">Treino A</span>
+          <span class="block text-[10px] sm:text-xs opacity-90 mt-0.5">Segunda-feira</span>
+        </button>
 
-            <!-- Grid de Alunos -->
-            <div id="students-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                <!-- Cartão Carol -->
-                <div onclick="selectStudent('carol')" class="bg-zinc-900 border border-zinc-800 hover:border-blue-500 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 group flex items-center justify-between">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold text-lg border border-blue-500/30 group-hover:scale-105 transition-transform">
-                            C
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Carol</h3>
-                            <p class="text-xs text-zinc-400">Treino Full Body / Emagrecimento</p>
-                        </div>
-                    </div>
-                    <span class="text-zinc-500 group-hover:text-blue-400 transition-colors font-bold text-xl">→</span>
-                </div>
+        <button
+          id="tab-btn-B"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          onclick="switchWorkoutTab('B')"
+          class="py-3 px-2 sm:px-4 rounded-xl text-center transition cursor-pointer bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300"
+        >
+          <span class="block text-xs sm:text-sm font-extrabold">Treino B</span>
+          <span class="block text-[10px] sm:text-xs text-zinc-400 mt-0.5">Quarta-feira</span>
+        </button>
 
-                <!-- Cartão Luciene -->
-                <div onclick="selectStudent('luciene')" class="bg-zinc-900 border border-zinc-800 hover:border-blue-500 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 group flex items-center justify-between">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold text-lg border border-blue-500/30 group-hover:scale-105 transition-transform">
-                            L
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Luciene</h3>
-                            <p class="text-xs text-zinc-400">Treino Adaptado / Fortalecimento</p>
-                        </div>
-                    </div>
-                    <span class="text-zinc-500 group-hover:text-blue-400 transition-colors font-bold text-xl">→</span>
-                </div>
+        <button
+          id="tab-btn-C"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          onclick="switchWorkoutTab('C')"
+          class="py-3 px-2 sm:px-4 rounded-xl text-center transition cursor-pointer bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300"
+        >
+          <span class="block text-xs sm:text-sm font-extrabold">Treino C</span>
+          <span class="block text-[10px] sm:text-xs text-zinc-400 mt-0.5">Sexta-feira</span>
+        </button>
+      </div>
 
-                <!-- Botão Adicionar Aluno (+) -->
-                <button onclick="openAddStudentModal()" class="bg-zinc-900/60 border border-dashed border-zinc-700 hover:border-blue-500/60 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:bg-zinc-900 flex items-center justify-center space-x-3 group sm:col-span-2">
-                    <div class="w-10 h-10 rounded-full bg-zinc-800 text-zinc-400 group-hover:text-blue-400 flex items-center justify-center font-bold text-xl transition-colors">
-                        +
-                    </div>
-                    <span class="text-sm font-semibold text-zinc-300 group-hover:text-blue-400 transition-colors">Adicionar Novo Aluno</span>
-                </button>
-            </div>
+      <!-- Cabeçalho Dinâmico da Ficha Selecionada -->
+      <div class="bg-graphite/90 border border-borderSubtle rounded-2xl p-5 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span id="workout-day-badge" class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30 mb-1.5">
+              Segunda-feira
+            </span>
+            <h2 id="treino-heading" class="text-lg sm:text-xl font-bold text-white">
+              Treino A — Base muscular e fortalecimento geral
+            </h2>
+          </div>
+          <span id="workout-count-badge" class="text-xs font-semibold px-3 py-1 rounded-lg bg-zinc-800 text-zinc-300 border border-zinc-700">
+            6 exercícios + Cardio
+          </span>
         </div>
 
-        <!-- TELA 2: FICHA DO TREINO (Oculta por padrão) -->
-        <div id="workout-view" class="hidden space-y-6">
-            
-            <!-- Botão Voltar -->
+        <!-- Orientações específicas da Ficha Atual -->
+        <div class="p-3.5 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-2">
+          <h3 id="workout-guidelines-title" class="text-xs font-bold uppercase tracking-wider text-zinc-400">
+            Orientações desta sessão:
+          </h3>
+          <ul id="workout-guidelines-list" class="space-y-1.5 text-xs sm:text-sm text-zinc-300">
+            <!-- Orientações inseridas dinamicamente -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Lista de Exercícios + Cardio Final Renderizada Dinamicamente -->
+      <div id="exercises-list" class="space-y-4">
+        <!-- Cartões dos exercícios inseridos via JavaScript -->
+      </div>
+    </section>
+
+    <!-- 4. SEÇÕES INFORMATIVAS DINÂMICAS DO ALUNO (50 MIN, PROGRESSÃO, MOUNJARO, AVALIAÇÃO, RECOMENDAÇÃO) -->
+    <div id="student-info-sections" class="space-y-8">
+      <!-- Conteúdo específico da Carol ou da Luciene renderizado via JavaScript -->
+    </div>
+
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- VIEW 3: VISUALIZAÇÃO DE ALUNO EM MONTAGEM (LUCIENE / NOVOS)-->
+  <!-- ========================================================= -->
+  <div id="placeholder-student-view" class="hidden max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10 space-y-6">
+    <div class="flex items-center justify-between">
+      <button
+        id="back-from-placeholder-btn"
+        type="button"
+        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-graphite hover:bg-surfaceHover active:scale-95 text-zinc-200 border border-borderSubtle shadow-md transition cursor-pointer"
+      >
+        <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        ← Voltar para Alunos
+      </button>
+    </div>
+
+    <div class="bg-graphite border border-borderSubtle rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-borderSubtle pb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-400 border border-amber-500/30">
+            Ficha em estruturação
+          </span>
+          <h2 id="placeholder-student-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+            💪 MEU TREINO — LUCIENE
+          </h2>
+        </div>
+        <button
+          id="delete-custom-student-btn"
+          type="button"
+          class="hidden px-3.5 py-2 rounded-xl text-xs font-semibold bg-red-950/60 hover:bg-red-900/70 text-red-300 border border-red-500/30 transition cursor-pointer"
+        >
+          Remover aluno
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="bg-zinc-900/90 border border-zinc-800 rounded-xl p-4">
+          <span class="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold block">Objetivo</span>
+          <p id="placeholder-student-goal" class="text-sm sm:text-base font-bold text-white mt-0.5">Condicionamento</p>
+        </div>
+        <div class="bg-zinc-900/90 border border-zinc-800 rounded-xl p-4">
+          <span class="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold block">Frequência</span>
+          <p id="placeholder-student-freq" class="text-sm sm:text-base font-bold text-white mt-0.5">3 vezes por semana</p>
+        </div>
+        <div class="bg-zinc-900/90 border border-zinc-800 rounded-xl p-4">
+          <span class="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold block">Experiência</span>
+          <p id="placeholder-student-level" class="text-sm sm:text-base font-bold text-blue-400 mt-0.5">Iniciante</p>
+        </div>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-zinc-900/70 border border-dashed border-zinc-700 text-center space-y-3">
+        <div class="w-12 h-12 rounded-2xl bg-blue-500/15 text-blue-400 border border-blue-500/30 flex items-center justify-center mx-auto">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+        </div>
+        <h3 class="text-base sm:text-lg font-bold text-white">
+          Ficha de treino em montagem
+        </h3>
+        <p class="text-xs sm:text-sm text-zinc-400 max-w-md mx-auto leading-relaxed">
+          Os exercícios individuais, séries, descansos e orientações deste perfil ainda estão sendo organizados.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CADASTRAR NOVO ALUNO (BOTÃO +) -->
+  <div
+    id="add-student-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="add-student-modal-title"
+  >
+    <div class="bg-graphite border border-zinc-700/80 rounded-2xl max-w-md w-full p-5 sm:p-6 shadow-2xl space-y-5">
+      <div class="flex items-center justify-between border-b border-borderSubtle pb-4">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-blue-400">Novo Perfil</span>
+          <h3 id="add-student-modal-title" class="text-xl font-bold text-white mt-0.5">
+            Cadastrar Aluno
+          </h3>
+        </div>
+        <button
+          id="close-add-student-btn"
+          type="button"
+          class="p-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 transition cursor-pointer"
+          aria-label="Fechar cadastro"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form id="add-student-form" class="space-y-4">
+        <div>
+          <label for="student-name-input" class="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1.5">
+            Nome do aluno *
+          </label>
+          <input
+            id="student-name-input"
+            type="text"
+            required
+            placeholder="Ex: Mariana"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+
+        <div>
+          <label for="student-goal-input" class="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1.5">
+            Objetivo
+          </label>
+          <select
+            id="student-goal-input"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-sm text-white focus:outline-none focus:border-blue-500"
+          >
+            <option value="Emagrecimento">Emagrecimento</option>
+            <option value="Hipertrofia">Hipertrofia</option>
+            <option value="Condicionamento físico">Condicionamento físico</option>
+            <option value="Saúde e bem-estar">Saúde e bem-estar</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="student-freq-input" class="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1.5">
+              Frequência
+            </label>
+            <select
+              id="student-freq-input"
+              class="w-full px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-sm text-white focus:outline-none focus:border-blue-500"
+            >
+              <option value="2 vezes por semana">2x / semana</option>
+              <option value="3 vezes por semana" selected>3x / semana</option>
+              <option value="4 vezes por semana">4x / semana</option>
+              <option value="5 vezes por semana">5x / semana</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="student-level-input" class="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1.5">
+              Nível
+            </label>
+            <select
+              id="student-level-input"
+              class="w-full px-3 py-2.5 rounded-xl bg-zinc-900 border border-zinc-700 text-sm text-white focus:outline-none focus:border-blue-500"
+            >
+              <option value="Iniciante" selected>Iniciante</option>
+              <option value="Intermediário">Intermediário</option>
+              <option value="Avançado">Avançado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-2 flex items-center gap-3">
+          <button
+            type="button"
+            id="cancel-add-student-btn"
+            class="w-1/2 py-3 rounded-xl font-semibold text-sm bg-zinc-800 hover:bg-zinc-700 text-zinc-300 transition cursor-pointer"
+          >
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="w-1/2 py-3 rounded-xl font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white transition cursor-pointer"
+          >
+            Salvar aluno
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DE DEMONSTRAÇÃO E INSTRUÇÕES DETALHADAS -->
+  <div
+    id="demo-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition-opacity"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+    <div class="bg-graphite border border-zinc-700/80 rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-5 relative animate-fadeIn">
+      <!-- Cabeçalho do Modal -->
+      <div class="flex items-start justify-between gap-4 border-b border-borderSubtle pb-4">
+        <div>
+          <span id="modal-badge" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30">
+            Grupo Muscular
+          </span>
+          <h3 id="modal-title" class="text-xl font-bold text-white mt-2">
+            Nome do Exercício
+          </h3>
+        </div>
+        <button
+          id="close-modal-btn"
+          type="button"
+          class="p-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 transition cursor-pointer"
+          aria-label="Fechar janela"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Ilustração SVG Ampliada -->
+      <div id="modal-illustration" class="w-full h-40 rounded-xl bg-zinc-900/90 border border-borderSubtle flex items-center justify-center p-4">
+        <!-- SVG inserido via JS -->
+      </div>
+
+      <!-- Passo a passo de execução -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-400">
+          Passo a passo de execução
+        </h4>
+        <ol id="modal-steps" class="space-y-2 text-sm text-zinc-200 list-decimal list-inside">
+          <!-- Passos inseridos via JS -->
+        </ol>
+      </div>
+
+      <!-- Dica de Postura e Segurança -->
+      <div class="p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/25 text-xs sm:text-sm text-blue-200">
+        <strong class="text-blue-400 block mb-0.5">Dica de postura:</strong>
+        <span id="modal-posture">Dica aqui</span>
+      </div>
+
+      <!-- Botão Fechar -->
+      <div class="pt-1">
+        <button
+          id="modal-confirm-btn"
+          type="button"
+          class="w-full py-3 rounded-xl font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white transition cursor-pointer"
+        >
+          Entendi, voltar ao treino
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAIXA DE MENSAGEM / NOTIFICAÇÃO (Substitui alert()) -->
+  <div
+    id="toast-notification"
+    class="fixed bottom-5 right-5 left-5 sm:left-auto sm:w-80 z-50 hidden items-center gap-3 p-4 rounded-xl bg-zinc-900 border border-blue-500/50 shadow-2xl text-sm text-white"
+  >
+    <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0 animate-ping"></span>
+    <span id="toast-message" class="font-medium">Tempo de descanso finalizado!</span>
+  </div>
+
+  <script>
+    // Ilustrações SVG reutilizáveis por categoria de movimento
+    const SVG_ICONS = {
+      legPress: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <path d="M22 68 L45 45 L45 68" stroke="#52525b" />
+          <line x1="25" y1="42" x2="45" y2="62" stroke="#93c5fd" stroke-width="3.5" />
+          <circle cx="23" cy="36" r="5" fill="#3b82f6" stroke="none" />
+          <path d="M45 62 L66 46 L84 32" stroke="#fafafa" stroke-width="3.5" />
+          <line x1="78" y1="22" x2="96" y2="40" stroke="#ef4444" stroke-width="4" />
+          <path d="M72 24 L82 16" stroke="#3b82f6" stroke-width="2" />
+        </svg>
+      `,
+      legExtension: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <path d="M32 24 L32 50 L58 50 M36 50 L36 68" stroke="#52525b" />
+          <circle cx="40" cy="24" r="5" fill="#3b82f6" stroke="none" />
+          <path d="M40 31 L40 47 L62 47 L88 42" stroke="#fafafa" stroke-width="3.5" />
+          <circle cx="88" cy="46" r="4" fill="#ef4444" stroke="none" />
+          <path d="M74 60 A 20 20 0 0 0 92 46" stroke="#3b82f6" stroke-width="2" />
+        </svg>
+      `,
+      legCurl: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <path d="M22 46 L72 46 L78 68 M30 46 L26 68" stroke="#52525b" />
+          <circle cx="24" cy="38" r="5" fill="#3b82f6" stroke="none" />
+          <line x1="30" y1="42" x2="72" y2="42" stroke="#93c5fd" stroke-width="3.5" />
+          <path d="M72 42 L86 22" stroke="#fafafa" stroke-width="3.5" />
+          <circle cx="89" cy="24" r="4" fill="#ef4444" stroke="none" />
+          <path d="M95 36 A 18 18 0 0 0 92 20" stroke="#3b82f6" stroke-width="2" />
+        </svg>
+      `,
+      chestPress: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <path d="M40 24 L40 54 L60 54 M44 54 L44 68" stroke="#52525b" />
+          <circle cx="48" cy="24" r="5" fill="#3b82f6" stroke="none" />
+          <path d="M47 31 L47 50 L62 50 L64 66" stroke="#93c5fd" stroke-width="3.5" />
+          <line x1="48" y1="36" x2="78" y2="36" stroke="#fafafa" stroke-width="3.5" />
+          <line x1="78" y1="26" x2="78" y2="46" stroke="#ef4444" stroke-width="3.5" />
+          <line x1="84" y1="36" x2="96" y2="36" stroke="#3b82f6" stroke-width="2" />
+        </svg>
+      `,
+      seatedRow: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <rect x="26" y="54" width="28" height="14" rx="2" stroke="#52525b" />
+          <circle cx="38" cy="24" r="5" fill="#3b82f6" stroke="none" />
+          <path d="M38 31 L38 51 L68 48" stroke="#93c5fd" stroke-width="3.5" />
+          <polyline points="38,36 28,42 46,42" stroke="#fafafa" stroke-width="3" />
+          <line x1="46" y1="42" x2="88" y2="42" stroke="#ef4444" stroke-width="2.5" />
+          <rect x="88" y="20" width="10" height="48" rx="2" stroke="#52525b" />
+        </svg>
+      `,
+      crunchMachine: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <path d="M38 50 L62 50 L62 68 M42 50 L42 68" stroke="#52525b" />
+          <circle cx="52" cy="24" r="5" fill="#3b82f6" stroke="none" />
+          <path d="M46 31 Q52 42 46 48 L64 48 L68 66" stroke="#fafafa" stroke-width="3.5" />
+          <path d="M48 33 L58 28" stroke="#ef4444" stroke-width="3" />
+          <path d="M62 24 A 16 16 0 0 1 70 38" stroke="#3b82f6" stroke-width="2" />
+        </svg>
+      `,
+      squat: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <line x1="42" y1="14" x2="42" y2="68" stroke="#52525b" />
+          <line x1="78" y1="14" x2="78" y2="68" stroke="#52525b" />
+          <line x1="32" y1="28" x2="88" y2="28" stroke="#ef4444" stroke-width="3" />
+          <circle cx="60" cy="20" r="5" fill="#3b82f6" stroke="none" />
+          <path d="M60 27 L52 44 L66 52 L60 66" stroke="#fafafa" stroke-width="3.5" />
+        </svg>
+      `,
+      hipThrust: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <rect x="20" y="44" width="22" height="24" rx="2" stroke="#52525b" />
+          <circle cx="34" cy="34" r="5" fill="#3b82f6" stroke="none" />
+          <path d="M40 40 L68 40 L84 66" stroke="#fafafa" stroke-width="3.5" />
+          <circle cx="64" cy="36" r="5" fill="#ef4444" stroke="none" />
+          <line x1="64" y1="26" x2="64" y2="16" stroke="#3b82f6" stroke-width="2" />
+        </svg>
+      `,
+      abductor: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <circle cx="60" cy="20" r="5" fill="#3b82f6" stroke="none" />
+          <line x1="60" y1="27" x2="60" y2="48" stroke="#93c5fd" stroke-width="3.5" />
+          <path d="M60 48 L40 56 L36 68 M60 48 L80 56 L84 68" stroke="#fafafa" stroke-width="3.5" />
+          <path d="M34 46 L24 46 M86 46 L96 46" stroke="#ef4444" stroke-width="2.5" />
+        </svg>
+      `,
+      latPulldown: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <line x1="60" y1="10" x2="60" y2="22" stroke="#52525b" />
+          <line x1="36" y1="22" x2="84" y2="22" stroke="#ef4444" stroke-width="3" />
+          <circle cx="60" cy="32" r="5" fill="#3b82f6" stroke="none" />
+          <line x1="60" y1="39" x2="60" y2="62" stroke="#93c5fd" stroke-width="3.5" />
+          <polyline points="38,22 44,38 60,40 76,38 82,22" stroke="#fafafa" stroke-width="3" />
+        </svg>
+      `,
+      shoulderPress: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <circle cx="60" cy="34" r="5" fill="#3b82f6" stroke="none" />
+          <line x1="60" y1="41" x2="60" y2="64" stroke="#93c5fd" stroke-width="3.5" />
+          <polyline points="42,18 44,38 60,42 76,38 78,18" stroke="#fafafa" stroke-width="3" />
+          <line x1="34" y1="18" x2="50" y2="18" stroke="#ef4444" stroke-width="3" />
+          <line x1="70" y1="18" x2="86" y2="18" stroke="#ef4444" stroke-width="3" />
+        </svg>
+      `,
+      tricepsRope: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <line x1="78" y1="12" x2="78" y2="42" stroke="#52525b" />
+          <circle cx="48" cy="22" r="5" fill="#3b82f6" stroke="none" />
+          <line x1="48" y1="29" x2="48" y2="66" stroke="#93c5fd" stroke-width="3.5" />
+          <polyline points="48,33 56,42 76,42" stroke="#fafafa" stroke-width="3" />
+          <path d="M78 42 L72 52 M78 42 L84 52" stroke="#ef4444" stroke-width="3" />
+        </svg>
+      `,
+      stiffDumbbell: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <circle cx="76" cy="30" r="5" fill="#3b82f6" stroke="none" />
+          <path d="M70 33 L46 42 L48 66" stroke="#fafafa" stroke-width="3.5" />
+          <line x1="66" y1="35" x2="66" y2="54" stroke="#93c5fd" stroke-width="3" />
+          <rect x="61" y="53" width="10" height="5" rx="1" fill="#ef4444" stroke="none" />
+        </svg>
+      `,
+      bicepsCurl: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <circle cx="52" cy="20" r="5" fill="#3b82f6" stroke="none" />
+          <line x1="52" y1="27" x2="52" y2="66" stroke="#93c5fd" stroke-width="3.5" />
+          <polyline points="52,32 54,46 72,36" stroke="#fafafa" stroke-width="3" />
+          <rect x="68" y="31" width="10" height="5" rx="1" fill="#ef4444" stroke="none" />
+        </svg>
+      `,
+      cardioTreadmill: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <path d="M24 62 L92 56 M84 56 L94 24 L86 22" stroke="#52525b" stroke-width="3" />
+          <circle cx="58" cy="20" r="5" fill="#3b82f6" stroke="none" />
+          <path d="M58 27 L56 42 L46 56 M56 42 L68 55" stroke="#fafafa" stroke-width="3" />
+          <path d="M57 31 L68 36 M57 31 L48 37" stroke="#93c5fd" stroke-width="2.5" />
+        </svg>
+      `,
+      cardioBike: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <circle cx="42" cy="56" r="10" stroke="#52525b" />
+          <path d="M42 56 L58 38 L78 26 M52 44 L44 38" stroke="#52525b" />
+          <circle cx="58" cy="18" r="5" fill="#3b82f6" stroke="none" />
+          <path d="M56 24 L46 38 L56 52 M56 26 L74 28" stroke="#fafafa" stroke-width="3" />
+        </svg>
+      `,
+      calfRaise: `
+        <svg viewBox="0 0 120 80" class="w-full h-full text-blue-400" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="15" y1="68" x2="105" y2="68" stroke="#3f3f46" />
+          <rect x="44" y="60" width="24" height="8" rx="1.5" stroke="#52525b" />
+          <circle cx="56" cy="18" r="5" fill="#3b82f6" stroke="none" />
+          <line x1="56" y1="25" x2="56" y2="45" stroke="#93c5fd" stroke-width="3.5" />
+          <path d="M56 45 L56 57 L62 60" stroke="#fafafa" stroke-width="3.5" />
+          <path d="M44 26 L68 26" stroke="#ef4444" stroke-width="3" />
+          <path d="M76 58 L76 46" stroke="#3b82f6" stroke-width="2" />
+        </svg>
+      `
+    };
+
+    // Programas completos por aluna (Carol e Luciene)
+    const STUDENT_PROGRAMS = {
+      carol: {
+        name: 'Carol',
+        upperName: 'CAROL',
+        headerTitle: '💪 MEU TREINO — CAROL',
+        headerSubtitle: 'Planejamento completo com Treinos A, B e C, cronômetros e acompanhamento.',
+        metaBadge: '3X SEMANA · 50 MIN · INICIANTE',
+        summaryHeading: 'Resumo da ficha da Carol',
+        summaryCards: [
+          { label: 'Frequência', value: '3x', unit: 'por semana', color: 'text-white' },
+          { label: 'Duração', value: '50 min', unit: 'por sessão', color: 'text-blue-400' },
+          { label: 'Musculação', value: '6', unit: 'exercícios / treino', color: 'text-white' },
+          { label: 'Cardio', value: '8–10 min', unit: 'inicialmente', color: 'text-emerald-400' }
+        ],
+        priorityHTML: `
+          <div>
+            <strong class="text-white">Prioridade:</strong> emagrecimento com preservação de massa muscular, fortalecimento e condicionamento.
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 shrink-0 self-start sm:self-auto">
+            Ex-Mounjaro (-17 kg)
+          </span>
+        `,
+        workouts: {
+          A: {
+            id: 'A',
+            label: 'Treino A',
+            day: 'Segunda-feira',
+            title: 'Treino A — Base muscular e fortalecimento geral',
+            countBadge: '6 exercícios + Cardio',
+            guidelinesTitle: 'Orientações desta sessão:',
+            guidelines: [
+              'Executar os movimentos de maneira controlada.',
+              'Não utilizar cargas elevadas no início.',
+              'Evitar travar os joelhos na extensão.',
+              'Priorizar a amplitude confortável e a execução correta.'
+            ],
+            exercises: [
+              {
+                id: 'a-1',
+                number: '01',
+                name: 'Leg press 45°',
+                muscle: 'Quadríceps e glúteos',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Executar de maneira controlada, sem tirar o quadril do encosto.',
+                timerSeconds: 75,
+                timerLabel: 'Descanso 75s',
+                isCardio: false,
+                steps: [
+                  'Apoie totalmente as costas e o quadril no encosto do aparelho.',
+                  'Posicione os pés na plataforma na largura dos ombros.',
+                  'Flexione os joelhos descendo de forma controlada até uma amplitude confortável.',
+                  'Empurre a plataforma sem travar os joelhos no final da extensão.'
+                ],
+                posture: 'Mantenha a lombar apoiada no encosto durante todo o movimento e não trave os joelhos no topo.',
+                svg: SVG_ICONS.legPress
+              },
+              {
+                id: 'a-2',
+                number: '02',
+                name: 'Cadeira extensora',
+                muscle: 'Quadríceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Evitar travar os joelhos na extensão e controlar a descida.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Ajuste o encosto para que a dobra dos joelhos fique alinhada com a borda do assento.',
+                  'Posicione o rolo inferior logo acima dos tornozelos.',
+                  'Estenda os joelhos elevando o peso de forma controlada.',
+                  'Retorne devagar à posição inicial sem deixar as placas baterem.'
+                ],
+                posture: 'Mantenha as costas apoiadas no encosto e segure nas alças laterais para estabilizar o tronco.',
+                svg: SVG_ICONS.legExtension
+              },
+              {
+                id: 'a-3',
+                number: '03',
+                name: 'Cadeira flexora',
+                muscle: 'Posterior de coxa',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Priorizar a amplitude confortável e a execução correta.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Ajuste o apoio das pernas logo acima dos calcanhares e trave o apoio sobre as coxas.',
+                  'Flexione os joelhos puxando o rolo para baixo e para trás de forma contínua.',
+                  'Retorne lentamente até estender os joelhos sem movimentos bruscos.'
+                ],
+                posture: 'Mantenha a coluna apoiada no encosto e evite levantar o quadril do assento.',
+                svg: SVG_ICONS.legCurl
+              },
+              {
+                id: 'a-4',
+                number: '04',
+                name: 'Supino máquina',
+                muscle: 'Peitoral e tríceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Não utilizar cargas elevadas no início; controlar ida e volta.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Regule o banco para que as manoplas fiquem na linha média do peitoral.',
+                  'Apoie costas e cabeça no encosto com os pés firmes no chão.',
+                  'Empurre as alças à frente de maneira controlada e retorne devagar.'
+                ],
+                posture: 'Mantenha os ombros encaixados no encosto, longe das orelhas.',
+                svg: SVG_ICONS.chestPress
+              },
+              {
+                id: 'a-5',
+                number: '05',
+                name: 'Remada sentada na máquina',
+                muscle: 'Costas e bíceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Executar de maneira controlada, mantendo a coluna alinhada.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Ajuste o apoio do peito e a altura do banco confortavelmente.',
+                  'Segure as manoplas e puxe os cotovelos para trás aproximando as escápulas.',
+                  'Retorne à posição inicial controlando o peso.'
+                ],
+                posture: 'Mantenha o tronco estável contra o apoio, sem balançar para trás.',
+                svg: SVG_ICONS.seatedRow
+              },
+              {
+                id: 'a-6',
+                number: '06',
+                name: 'Abdominal na máquina',
+                muscle: 'Abdômen',
+                prescription: '2 séries × 15 repetições · Descanso: 60–90s',
+                tip: 'Executar de forma controlada, expirando ao flexionar o tronco.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Sente-se na máquina e ajuste as alças ou apoio dos ombros.',
+                  'Contraia o abdômen flexionando o tronco à frente de forma controlada.',
+                  'Retorne devagar à posição inicial mantendo a tensão no abdômen.'
+                ],
+                posture: 'Evite puxar o pescoço com os braços; concentre a força na contração abdominal.',
+                svg: SVG_ICONS.crunchMachine
+              },
+              {
+                id: 'a-cardio',
+                number: 'CARDIO',
+                name: 'Caminhada na esteira',
+                muscle: 'Cardio ao final',
+                prescription: '10 minutos · Ritmo confortável',
+                tip: 'Caminhada em ritmo confortável, mantendo respiração controlada.',
+                timerSeconds: 600,
+                timerLabel: 'Esteira 10m',
+                isCardio: true,
+                quickOptions: [
+                  { label: '8m', secs: 480 },
+                  { label: '10m', secs: 600 }
+                ],
+                steps: [
+                  'Inicie em velocidade leve e estabilize em um ritmo confortável.',
+                  'Nos últimos 2 minutos, reduza gradualmente para desaceleração.'
+                ],
+                posture: 'Olhe para frente e mantenha os ombros relaxados.',
+                svg: SVG_ICONS.cardioTreadmill
+              }
+            ]
+          },
+          B: {
+            id: 'B',
+            label: 'Treino B',
+            day: 'Quarta-feira',
+            title: 'Treino B — Glúteos, posteriores e membros superiores',
+            countBadge: '6 exercícios + Cardio',
+            guidelinesTitle: 'Orientações desta sessão:',
+            guidelines: [
+              'No agachamento, começar com pouca carga e priorizar a técnica.',
+              'Na elevação pélvica, evitar compensar com a lombar.',
+              'Na cadeira abdutora, controlar a abertura e o retorno.',
+              'Na puxada, evitar jogar o tronco para trás.'
+            ],
+            exercises: [
+              {
+                id: 'b-1',
+                number: '01',
+                name: 'Agachamento no Smith até amplitude confortável',
+                muscle: 'Quadríceps e glúteos',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Começar com pouca carga e priorizar a técnica até amplitude confortável.',
+                timerSeconds: 75,
+                timerLabel: 'Descanso 75s',
+                isCardio: false,
+                steps: [
+                  'Posicione a barra sobre o trapézio (nunca sobre o pescoço) e destrave o equipamento.',
+                  'Deixe os pés na largura dos ombros, levemente à frente da linha da barra.',
+                  'Flexione quadril e joelhos descendo até uma amplitude confortável e segura.',
+                  'Suba empurrando o chão com os calcanhares e mantendo os joelhos alinhados.'
+                ],
+                posture: 'Mantenha o abdômen firme, peito aberto e joelhos apontando na mesma direção dos pés.',
+                svg: SVG_ICONS.squat
+              },
+              {
+                id: 'b-2',
+                number: '02',
+                name: 'Elevação pélvica na máquina',
+                muscle: 'Glúteos',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Evitar compensar com a lombar; focar na contração dos glúteos.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Apoie as costas no encosto da máquina e ajuste o cinto sobre a linha do quadril.',
+                  'Mantenha os pés firmes na plataforma na largura do quadril.',
+                  'Eleve o quadril até alinhar tronco e coxas, contraindo os glúteos sem arquear a lombar.',
+                  'Desça controladamente até a posição inicial.'
+                ],
+                posture: 'Mantenha o queixo levemente voltado para o peito para proteger a coluna lombar.',
+                svg: SVG_ICONS.hipThrust
+              },
+              {
+                id: 'b-3',
+                number: '03',
+                name: 'Cadeira abdutora',
+                muscle: 'Glúteo médio / lateral',
+                prescription: '2 séries × 15 repetições · Descanso: 60–90s',
+                tip: 'Controlar a abertura e o retorno sem bater as placas.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Sente-se com as costas totalmente apoiadas no encosto e os apoios externos nas coxas.',
+                  'Afaste as pernas para fora de maneira controlada.',
+                  'Segure brevemente na abertura máxima e retorne devagar.'
+                ],
+                posture: 'Mantenha a coluna ereta e o tronco apoiado durante todas as 15 repetições.',
+                svg: SVG_ICONS.abductor
+              },
+              {
+                id: 'b-4',
+                number: '04',
+                name: 'Puxada frontal na polia',
+                muscle: 'Costas e bíceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Evitar jogar o tronco para trás durante a puxada.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Ajuste o apoio das coxas e segure a barra com pegada um pouco mais aberta que os ombros.',
+                  'Puxe a barra em direção à parte superior do peito, levando os cotovelos para baixo.',
+                  'Retorne os braços para cima de forma controlada até estender quase totalmente.'
+                ],
+                posture: 'Mantenha o tronco praticamente vertical, evitando balançar para trás.',
+                svg: SVG_ICONS.latPulldown
+              },
+              {
+                id: 'b-5',
+                number: '05',
+                name: 'Desenvolvimento de ombros na máquina',
+                muscle: 'Ombros e tríceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Executar com carga leve e controle total na descida.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Regule o banco para que as manoplas fiquem na altura dos ombros.',
+                  'Empurre as alças para cima sem travar completamente os cotovelos.',
+                  'Desça devagar até a altura inicial.'
+                ],
+                posture: 'Mantenha a lombar apoiada no encosto e evite arquear as costas ao empurrar.',
+                svg: SVG_ICONS.shoulderPress
+              },
+              {
+                id: 'b-6',
+                number: '06',
+                name: 'Tríceps na polia com corda',
+                muscle: 'Tríceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Manter os cotovelos fixos ao lado do corpo.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Segure as extremidades da corda na polia alta com os cotovelos junto ao tronco.',
+                  'Estenda os cotovelos empurrando a corda para baixo e abrindo levemente no final.',
+                  'Retorne devagar até cerca de 90 graus sem mover os ombros.'
+                ],
+                posture: 'Deixe os ombros estáveis e evite balançar o corpo para ajudar no movimento.',
+                svg: SVG_ICONS.tricepsRope
+              },
+              {
+                id: 'b-cardio',
+                number: 'CARDIO',
+                name: 'Bicicleta ergométrica',
+                muscle: 'Cardio ao final',
+                prescription: '10 minutos · Intensidade leve a moderada',
+                tip: 'Pedalar em intensidade leve a moderada, desacelerando nos últimos 2 minutos.',
+                timerSeconds: 600,
+                timerLabel: 'Bicicleta 10m',
+                isCardio: true,
+                quickOptions: [
+                  { label: '8m', secs: 480 },
+                  { label: '10m', secs: 600 }
+                ],
+                steps: [
+                  'Ajuste a altura do banco na linha do quadril antes de começar.',
+                  'Mantenha cadência confortável de leve a moderada por 8 a 10 minutos.'
+                ],
+                posture: 'Mantenha a coluna confortável e os ombros relaxados no guidão.',
+                svg: SVG_ICONS.cardioBike
+              }
+            ]
+          },
+          C: {
+            id: 'C',
+            label: 'Treino C',
+            day: 'Sexta-feira',
+            title: 'Treino C — Corpo inteiro e condicionamento',
+            countBadge: '6 exercícios + Cardio',
+            guidelinesTitle: 'Orientações desta sessão:',
+            guidelines: [
+              'Manter a coluna neutra no stiff.',
+              'Não tentar alcançar o chão com os halteres.',
+              'Utilizar uma carga que permita controlar todas as repetições.',
+              'Interromper o exercício se houver dor.'
+            ],
+            exercises: [
+              {
+                id: 'c-1',
+                number: '01',
+                name: 'Cadeira flexora',
+                muscle: 'Posterior de coxa',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Utilizar carga que permita controlar todas as repetições.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Ajuste o encosto e o apoio dos tornozelos confortavelmente.',
+                  'Flexione os joelhos puxando o rolo para trás de forma controlada.',
+                  'Retorne devagar à posição inicial.'
+                ],
+                posture: 'Mantenha costas e quadril apoiados durante toda a série.',
+                svg: SVG_ICONS.legCurl
+              },
+              {
+                id: 'c-2',
+                number: '02',
+                name: 'Agachamento com halter (Goblet)',
+                muscle: 'Quadríceps, glúteos e core',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Segurar o halter próximo ao peito e agachar em amplitude confortável.',
+                timerSeconds: 75,
+                timerLabel: 'Descanso 75s',
+                isCardio: false,
+                steps: [
+                  'Segure um halter na vertical junto ao centro do peito com as duas mãos.',
+                  'Afaste os pés na largura dos ombros e agache levando o quadril para trás e para baixo.',
+                  'Suba mantendo o tronco firme e o olhar para frente.'
+                ],
+                posture: 'Mantenha o peito erguido e os cotovelos apontados para baixo.',
+                svg: SVG_ICONS.squat
+              },
+              {
+                id: 'c-3',
+                number: '03',
+                name: 'Stiff com halteres leves',
+                muscle: 'Posterior de coxa e glúteos',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Manter a coluna neutra e não tentar alcançar o chão com os halteres.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Segure halteres leves à frente das coxas com os joelhos levemente destravados.',
+                  'Incline o tronco à frente empurrando o quadril para trás, deslizando os halteres rente às pernas.',
+                  'Desça somente até onde a coluna permanecer neutra (sem tentar alcançar o chão) e retorne.'
+                ],
+                posture: 'Coluna totalmente neutra e abdômen contraído. Interrompa imediatamente se sentir desconforto lombar.',
+                svg: SVG_ICONS.stiffDumbbell
+              },
+              {
+                id: 'c-4',
+                number: '04',
+                name: 'Supino inclinado na máquina',
+                muscle: 'Peitoral superior e tríceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Controlar todas as repetições sem pressa.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Ajuste o banco para alinhar as manoplas com a parte superior do peitoral.',
+                  'Empurre as alças para cima e à frente de forma controlada.',
+                  'Retorne lentamente à posição inicial.'
+                ],
+                posture: 'Mantenha as costas apoiadas no banco inclinado e os ombros estáveis.',
+                svg: SVG_ICONS.chestPress
+              },
+              {
+                id: 'c-5',
+                number: '05',
+                name: 'Remada baixa na polia',
+                muscle: 'Costas e bíceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Puxar com postura ereta e controlar o retorno.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Sente-se com os pés apoiados na plataforma e joelhos semiflexionados.',
+                  'Puxe o triângulo em direção ao umbigo aproximando as escápulas.',
+                  'Estenda os braços de volta devagar sem curvar a coluna.'
+                ],
+                posture: 'Mantenha a coluna neutra e o peito aberto durante toda a série.',
+                svg: SVG_ICONS.seatedRow
+              },
+              {
+                id: 'c-6',
+                number: '06',
+                name: 'Rosca bíceps com halteres',
+                muscle: 'Bíceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Evitar balançar o tronco; subir e descer os halteres com controle.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Em pé, segure um halter em cada mão com os braços estendidos ao lado do corpo.',
+                  'Flexione os cotovelos trazendo os halteres em direção aos ombros.',
+                  'Desça lentamente até estender os braços.'
+                ],
+                posture: 'Mantenha os cotovelos próximos à lateral do corpo e o abdômen firme.',
+                svg: SVG_ICONS.bicepsCurl
+              },
+              {
+                id: 'c-cardio',
+                number: 'CARDIO',
+                name: 'Caminhada na esteira ou bicicleta',
+                muscle: 'Cardio ao final',
+                prescription: '10 minutos · Intensidade leve a moderada',
+                tip: 'Escolher esteira ou bicicleta e finalizar com 2 minutos de desaceleração.',
+                timerSeconds: 600,
+                timerLabel: 'Cardio 10m',
+                isCardio: true,
+                quickOptions: [
+                  { label: '8m', secs: 480 },
+                  { label: '10m', secs: 600 }
+                ],
+                steps: [
+                  'Mantenha ritmo leve a moderado onde ainda consiga conversar normalmente.',
+                  'Diminua o ritmo nos 2 minutos finais para recuperar a respiração.'
+                ],
+                posture: 'Postura confortável e respiração regular.',
+                svg: SVG_ICONS.cardioTreadmill
+              }
+            ]
+          }
+        },
+        infoSectionsHTML: `
+          <!-- 4. ORGANIZAÇÃO DOS 50 MINUTOS (CAROL) -->
+          <section aria-labelledby="sessao-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h2 id="sessao-heading" class="text-lg font-bold text-white">Organização dos 50 minutos</h2>
+                <p class="text-xs text-zinc-400 mt-0.5">A sessão deve ser organizada para que Carol consiga cumprir tudo sem pressa.</p>
+              </div>
+              <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30">Total: 50 min</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-start justify-between gap-3">
+                <div>
+                  <h3 class="text-sm font-bold text-white">1. Aquecimento</h3>
+                  <p class="text-xs text-zinc-300 mt-1">Esteira ou bicicleta em ritmo leve.</p>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-zinc-800 text-blue-400 font-mono text-xs font-bold shrink-0">5 min</span>
+              </div>
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-start justify-between gap-3">
+                <div>
+                  <h3 class="text-sm font-bold text-white">2. Musculação</h3>
+                  <p class="text-xs text-zinc-300 mt-1">Seis exercícios, duas séries por exercício e intervalos controlados.</p>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-zinc-800 text-blue-400 font-mono text-xs font-bold shrink-0">35 min</span>
+              </div>
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-start justify-between gap-3">
+                <div>
+                  <h3 class="text-sm font-bold text-white">3. Cardio</h3>
+                  <p class="text-xs text-zinc-300 mt-1">Caminhada ou bicicleta em intensidade moderada.</p>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-zinc-800 text-emerald-400 font-mono text-xs font-bold shrink-0">8–10 min</span>
+              </div>
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-start justify-between gap-3">
+                <div>
+                  <h3 class="text-sm font-bold text-white">4. Desaceleração</h3>
+                  <p class="text-xs text-zinc-300 mt-1">Diminuir o ritmo e recuperar a respiração.</p>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-200 font-mono text-xs font-bold shrink-0">2 min</span>
+              </div>
+            </div>
+            <p class="text-xs text-zinc-200 bg-zinc-900/90 p-3.5 rounded-xl border border-zinc-800 leading-relaxed">
+              <strong class="text-blue-400">Intervalos:</strong> Os intervalos entre as séries devem ficar entre <strong>60 e 90 segundos</strong>. Se ela precisar de mais tempo para recuperar a respiração, pode descansar um pouco mais.
+            </p>
+          </section>
+
+          <!-- 5. PROGRESSÃO DE TREINAMENTO (8 SEMANAS) -->
+          <section aria-labelledby="progressao-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
             <div>
-                <button onclick="goHome()" class="inline-flex items-center text-sm font-medium text-zinc-400 hover:text-white transition-colors bg-zinc-900 px-3 py-1.5 rounded-lg border border-zinc-800">
-                    ← Voltar para Alunos
-                </button>
+              <h2 id="progressao-heading" class="text-lg font-bold text-white">Progressão de treinamento</h2>
+              <p class="text-xs text-zinc-300 mt-0.5">Como Carol está começando, não recomendo aumentar as cargas rapidamente.</p>
             </div>
-
-            <!-- Cabeçalho do Aluno -->
-            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6 shadow-xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-2xl pointer-events-none"></div>
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div>
-                        <div class="flex items-center space-x-2 mb-1">
-                            <span id="header-student-badge" class="px-2.5 py-0.5 text-xs font-semibold bg-blue-500/20 text-blue-400 rounded-full border border-blue-500/30">Ficha Ativa</span>
-                            <span id="workout-count-badge" class="text-xs text-zinc-400">3x por semana · 50 min</span>
-                        </div>
-                        <h2 id="student-name-title" class="text-2xl sm:text-3xl font-extrabold text-white">Nome do Aluno</h2>
-                        <p id="student-subtitle" class="text-sm text-zinc-400 mt-0.5">Objetivo e descrição do treino</p>
-                    </div>
-                    <!-- Ações de Progresso -->
-                    <div class="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-end">
-                        <div class="text-right">
-                            <span id="progress-text" class="text-xs font-bold text-blue-400">0 de 0 concluídos</span>
-                            <div class="w-28 sm:w-36 h-2 bg-zinc-800 rounded-full mt-1 overflow-hidden border border-zinc-700">
-                                <div id="progress-bar" class="h-full bg-blue-500 transition-all duration-300" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <button onclick="resetProgress()" class="p-2 text-zinc-400 hover:text-white bg-zinc-800 hover:bg-zinc-700 rounded-xl transition-colors text-xs font-medium" title="Reiniciar marcações">
-                            ↻ Reiniciar
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Seletor de Abas de Treino (A, B, C) -->
-                <div id="workout-tabs" class="flex space-x-2 mt-6 border-t border-zinc-800 pt-4 overflow-x-auto">
-                    <!-- Gerado via JS -->
-                </div>
+            <div class="overflow-hidden rounded-xl border border-borderSubtle bg-zinc-900/90">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="bg-zinc-900 text-zinc-300 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
+                    <th class="py-3 px-4 font-semibold w-1/3">Período</th>
+                    <th class="py-3 px-4 font-semibold">Orientação</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-borderSubtle">
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-blue-400">Semanas 1 e 2</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Aprender os movimentos e adaptar o corpo</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-blue-400">Semanas 3 e 4</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Melhorar execução e aumentar repetições quando possível</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-emerald-400">Semanas 5 e 6</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Aumentar pequenas quantidades de carga se estiver preparada</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-amber-400">Semanas 7 e 8</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Consolidar a evolução e reavaliar o treino</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-
-            <!-- Cronômetro Rápido Interativo -->
-            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold text-lg border border-blue-500/30">
-                        ⏱️
-                    </div>
-                    <div>
-                        <h4 class="text-sm font-bold text-white">Cronômetro de Descanso</h4>
-                        <p id="timer-display" class="text-xl font-extrabold text-blue-400 tracking-wider">00:00</p>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-2 justify-center">
-                    <button onclick="startTimer(30)" class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold rounded-lg transition-colors border border-zinc-700">30s</button>
-                    <button onclick="startTimer(60)" class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold rounded-lg transition-colors border border-zinc-700">60s</button>
-                    <button onclick="startTimer(90)" class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold rounded-lg transition-colors border border-zinc-700">90s</button>
-                    <button onclick="startTimer(120)" class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold rounded-lg transition-colors border border-zinc-700">120s</button>
-                    <button onclick="stopTimer()" class="px-3 py-1.5 bg-red-500/20 hover:bg-red-500/30 text-red-400 text-xs font-semibold rounded-lg transition-colors border border-red-500/30">Parar</button>
-                </div>
+            <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-2">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-blue-400">Intensidade recomendada (Escala de Esforço 0 a 10)</h3>
+              <ul class="space-y-1.5 text-xs sm:text-sm text-zinc-200">
+                <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span><strong>Primeiras semanas:</strong> esforço de 5 a 6 em uma escala de 0 a 10.</span></li>
+                <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span><strong>Após adaptação:</strong> esforço de 6 a 7 em uma escala de 0 a 10.</span></li>
+                <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span>Não realizar séries até a falha muscular neste início.</span></li>
+                <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span>Manter aproximadamente <strong>2 a 4 repetições possíveis</strong> ao terminar cada série.</span></li>
+              </ul>
             </div>
+          </section>
 
-            <!-- Lista de Exercícios -->
-            <div class="space-y-4">
-                <h3 id="workout-guidelines-title" class="text-lg font-bold text-white px-1">Exercícios do Dia</h3>
-                <div id="exercises-list" class="grid grid-cols-1 gap-4">
-                    <!-- Gerado dinamicamente via JS -->
-                </div>
+          <!-- 6. CUIDADOS ESPECIAIS POR CONTA DO HISTÓRICO COM MOUNJARO -->
+          <section aria-labelledby="mounjaro-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
+            <div class="space-y-1">
+              <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">Histórico clínico · -17 kg eliminados</span>
+              <h2 id="mounjaro-heading" class="text-lg font-bold text-white pt-1">Cuidados especiais (Histórico com Mounjaro)</h2>
+              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">Carol relata que utilizou Mounjaro durante quatro meses, atualmente não utiliza mais e eliminou 17 kg. Por isso, devemos ter atenção a cinco aspectos:</p>
             </div>
-
-            <!-- Orientações e Cuidados Especiais -->
-            <div id="guidelines-container" class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6 space-y-4">
-                <h3 class="text-base font-bold text-white flex items-center space-x-2">
-                    <span>💡 Orientações Importantes</span>
-                </h3>
-                <ul id="guidelines-list" class="space-y-2 text-sm text-zinc-300">
-                    <!-- Gerado dinamicamente via JS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
+                <h3 class="font-bold text-blue-400">1. Preservação muscular</h3>
+                <p class="text-zinc-200 leading-relaxed">O treinamento resistido será prioridade. Não queremos simplesmente que o peso na balança diminua: queremos reduzir gordura e preservar a musculatura.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
+                <h3 class="font-bold text-blue-400">2. Alimentação</h3>
+                <ul class="text-zinc-200 space-y-1 leading-relaxed">
+                  <li>• Manter refeições regulares com fontes de proteína.</li>
+                  <li>• Evitar treinar em jejum se isso provocar fraqueza.</li>
+                  <li>• Procurar acompanhamento nutricional para adequar proteínas e calorias.</li>
                 </ul>
+              </div>
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
+                <h3 class="font-bold text-blue-400">3. Hidratação</h3>
+                <p class="text-zinc-200 leading-relaxed">Manter uma boa ingestão de água ao longo do dia, ajustada à necessidade individual e à orientação profissional.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
+                <h3 class="font-bold text-blue-400">4. Intensidade controlada</h3>
+                <p class="text-zinc-200 leading-relaxed">Não utilizar HIIT, circuitos exaustivos ou treinos de alta intensidade neste primeiro momento. O condicionamento será desenvolvido gradualmente.</p>
+              </div>
             </div>
-
-            <!-- Rodapé / Status -->
-            <div class="text-center py-4 text-xs text-zinc-500 border-t border-zinc-900">
-                MEU TREINO — Plataforma de Prescrição e Acompanhamento de Treinamento Online
-            </div>
-
-        </div>
-
-    </main>
-
-    <!-- Modal de Instrução Detalhada com GIF -->
-    <div id="exercise-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl max-w-lg w-full p-6 relative space-y-4 shadow-2xl">
-            <button onclick="closeExerciseModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-xl font-bold bg-zinc-800 w-8 h-8 rounded-full flex items-center justify-center">×</button>
-            <div class="flex items-center space-x-3">
-                <div id="modal-exercise-icon" class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold text-lg border border-blue-500/30 overflow-hidden">
-                    🏋️‍♂️
+            <div class="p-4 rounded-xl bg-red-950/60 border border-red-500/50 space-y-2.5">
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <div class="text-xs sm:text-sm text-red-100 leading-relaxed space-y-1.5">
+                  <p><strong class="text-red-300 font-semibold">5. Sinais de alerta:</strong> Se apresentar tontura, fraqueza incomum, náusea, palpitações ou mal-estar durante o treino, deve interromper a atividade e avaliar a situação. <strong>Dor no peito, desmaio ou falta de ar intensa exigem atendimento médico.</strong></p>
+                  <p class="text-amber-200 bg-black/50 p-2.5 rounded-lg border border-amber-500/40"><strong>Importante:</strong> a avaliação não deixa clara a resposta sobre a liberação médica para exercícios. É necessário confirmar essa informação antes de iniciar o programa.</p>
                 </div>
-                <div>
-                    <span id="modal-exercise-category" class="text-xs font-semibold text-blue-400 uppercase tracking-wider">Músculo Alvo</span>
-                    <h3 id="modal-exercise-title" class="text-xl font-bold text-white">Nome do Exercício</h3>
-                </div>
+              </div>
             </div>
-            
-            <!-- GIF / Vídeo Demonstrativo -->
-            <div class="w-full h-52 bg-zinc-950 rounded-xl overflow-hidden border border-zinc-800 flex items-center justify-center relative">
-                <img id="modal-exercise-gif" src="" alt="Demonstração do Exercício" class="w-full h-full object-cover" onerror="this.style.display='none'; document.getElementById('modal-fallback-icon').style.display='flex';" />
-                <div id="modal-fallback-icon" class="absolute inset-0 flex flex-col items-center justify-center text-zinc-500 space-y-2" style="display:none;">
-                    <span class="text-4xl">🏋️</span>
-                    <span class="text-xs font-medium">Demonstração Prática</span>
-                </div>
-            </div>
+          </section>
 
-            <div class="bg-zinc-950/50 p-4 rounded-xl border border-zinc-800/80 space-y-2">
-                <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Como Executar Corretamente:</h4>
-                <p id="modal-exercise-desc" class="text-sm text-zinc-200 leading-relaxed">Instruções detalhadas de execução...</p>
+          <!-- 7. COMO AVALIAR A EVOLUÇÃO DA CAROL -->
+          <section aria-labelledby="evolucao-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
+            <div>
+              <h2 id="evolucao-heading" class="text-lg font-bold text-white">Como avaliar a evolução da Carol</h2>
+              <p class="text-xs text-zinc-300 mt-0.5">Não vamos avaliar o resultado somente pelo peso. Sugestão de acompanhamento a cada 30 dias:</p>
             </div>
-            <div class="flex justify-end pt-2">
-                <button onclick="closeExerciseModal()" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-colors">Entendido</button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm">
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Peso corporal</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Circunferência abdominal</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Circunferência da cintura e quadril</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Medidas de coxas e braços</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span><span>Evolução das cargas nos exercícios</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span><span>Resistência cardiovascular</span></div>
+              <div class="sm:col-span-2 flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span><span>Fotografias de evolução, com autorização dela</span></div>
             </div>
-        </div>
-    </div>
+            <p class="text-xs text-zinc-300">O objetivo é observar se está perdendo medidas, ganhando força e preservando a musculatura.</p>
+          </section>
 
-    <!-- Modal Adicionar Aluno -->
-    <div id="add-student-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl max-w-md w-full p-6 relative space-y-4 shadow-2xl">
-            <button onclick="closeAddStudentModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-xl font-bold bg-zinc-800 w-8 h-8 rounded-full flex items-center justify-center">×</button>
-            <h3 class="text-lg font-bold text-white">Cadastrar Novo Aluno</h3>
-            <p class="text-xs text-zinc-400">Insira o nome do aluno para iniciar a prescrição.</p>
-            <div class="space-y-3">
-                <div>
-                    <label class="block text-xs font-semibold text-zinc-300 mb-1">Nome do Aluno</label>
-                    <input type="text" id="new-student-name" placeholder="Ex: Maria Silva" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500" />
+          <!-- 8. RECOMENDAÇÃO DE PLANEJAMENTO INICIAL -->
+          <footer class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-borderSubtle pb-4">
+              <div>
+                <span class="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold block">Planejamento inicial</span>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span class="text-sm sm:text-base font-bold text-white">Estruturado</span>
+                  <span class="text-zinc-500">·</span>
+                  <span class="text-sm font-semibold text-blue-400">Carol — Fichas A, B e C</span>
                 </div>
+              </div>
+              <span class="text-xs font-medium px-3 py-1 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">Reavaliação após 4 a 6 semanas</span>
             </div>
-            <div class="flex justify-end space-x-3 pt-2">
-                <button onclick="closeAddStudentModal()" class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-sm font-semibold rounded-xl transition-colors">Cancelar</button>
-                <button onclick="saveNewStudent()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-colors">Salvar Aluno</button>
+            <div class="space-y-2.5 text-xs sm:text-sm text-zinc-200 leading-relaxed">
+              <p><strong class="text-white font-semibold">Recomendação:</strong> Eu não colocaria Carol em um treino extremamente pesado agora. Ela já passou por uma perda considerável de peso (17 kg). O melhor caminho é construir uma boa base muscular, desenvolver força, melhorar a resistência e progredir gradualmente.</p>
+              <p class="text-zinc-300 text-xs bg-zinc-900/90 p-3.5 rounded-xl border border-zinc-800"><strong class="text-white">Acompanhamento:</strong> O treino deve ser reavaliado após <strong>4 a 6 semanas</strong>, considerando a resposta dela aos exercícios e a confirmação da liberação médica.</p>
             </div>
-        </div>
-    </div>
+          </footer>
+        `
+      },
+      luciene: {
+        name: 'Luciene',
+        upperName: 'LUCIENE',
+        headerTitle: '💪 MEU TREINO — LUCIENE',
+        headerSubtitle: 'Planejamento adaptado (Treinos A, B e C) com foco em disposição, regularidade e fortalecimento.',
+        metaBadge: '3X SEMANA · ATÉ 50 MIN · ADAPTAÇÃO CUIDADOSA',
+        summaryHeading: 'Resumo da ficha — Planejamento Luciene',
+        summaryCards: [
+          { label: 'Frequência', value: '3x', unit: 'por semana', color: 'text-white' },
+          { label: 'Tempo limite', value: '50 min', unit: 'sem obrigação', color: 'text-blue-400' },
+          { label: 'Exercícios', value: '4', unit: 'por sessão', color: 'text-white' },
+          { label: 'Cardio opcional', value: '5 min', unit: 'se estiver bem', color: 'text-emerald-400' }
+        ],
+        priorityHTML: `
+          <div class="space-y-1">
+            <strong class="text-white block">Prioridades do programa:</strong>
+            <span class="text-zinc-200 text-xs">Redução de gordura corporal · Preservação de massa muscular · Fortalecimento de pernas e glúteos · Desenvolvimento de força · Melhora gradual da disposição · Treino inicial adaptado</span>
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 shrink-0 self-start sm:self-auto">
+            Mounjaro (3ª semana)
+          </span>
+        `,
+        workouts: {
+          A: {
+            id: 'A',
+            label: 'Treino A',
+            day: 'Segunda-feira',
+            title: 'Treino A — Ênfase em pernas e movimentos básicos',
+            countBadge: '4 exercícios + Cardio 5m',
+            guidelinesTitle: 'Orientações desta sessão:',
+            guidelines: [
+              'Executar os movimentos de forma controlada, sem pressa.',
+              'Utilizar carga leve no leg press e amplitude confortável.',
+              'Respeitar os intervalos de 60 a 90 segundos (ou mais, se precisar).',
+              'Cardio opcional: 5 minutos de caminhada leve, apenas se estiver bem.'
+            ],
+            exercises: [
+              {
+                id: 'luc-a-1',
+                number: '01',
+                name: 'Cadeira extensora',
+                muscle: 'Quadríceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Controlar a subida e a descida sem travar os joelhos.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Ajuste o encosto e o apoio dos tornozelos confortavelmente.',
+                  'Suba o peso estendendo os joelhos de forma controlada.',
+                  'Desça devagar segurando o retorno até a posição inicial.'
+                ],
+                posture: 'Mantenha as costas apoiadas no encosto e segure nas alças laterais.',
+                svg: SVG_ICONS.legExtension
+              },
+              {
+                id: 'luc-a-2',
+                number: '02',
+                name: 'Mesa flexora',
+                muscle: 'Posterior de coxa',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Executar de maneira controlada, sem movimentos bruscos.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Deite-se de bruços na mesa flexora com o rolo posicionado logo acima dos calcanhares.',
+                  'Flexione os joelhos trazendo o rolo em direção aos glúteos com controle.',
+                  'Retorne lentamente à posição inicial sem soltar o peso de uma vez.'
+                ],
+                posture: 'Mantenha o quadril apoiado no banco e segure nas alças frontais para estabilizar.',
+                svg: SVG_ICONS.legCurl
+              },
+              {
+                id: 'luc-a-3',
+                number: '03',
+                name: 'Leg press leve',
+                muscle: 'Quadríceps e glúteos',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Utilizar carga leve e amplitude confortável, sem tirar o quadril do encosto.',
+                timerSeconds: 75,
+                timerLabel: 'Descanso 75s',
+                isCardio: false,
+                steps: [
+                  'Apoie bem as costas e o quadril no encosto do aparelho.',
+                  'Posicione os pés na plataforma na largura dos ombros.',
+                  'Desça o peso com carga leve até uma amplitude confortável.',
+                  'Empurre de volta sem travar completamente os joelhos.'
+                ],
+                posture: 'Mantenha o quadril apoiado o tempo todo e respire de forma contínua.',
+                svg: SVG_ICONS.legPress
+              },
+              {
+                id: 'luc-a-4',
+                number: '04',
+                name: 'Panturrilha sentada',
+                muscle: 'Panturrilhas',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Realizar o movimento sem impulsos, controlando a subida e a descida.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Sente-se no aparelho, apoie a parte frontal dos pés na plataforma e ajuste o apoio sobre as coxas.',
+                  'Eleve os calcanhares o máximo possível de forma controlada.',
+                  'Desça devagar até sentir alongar levemente a panturrilha.'
+                ],
+                posture: 'Mantenha a coluna ereta e faça uma pausa breve no topo e embaixo.',
+                svg: SVG_ICONS.calfRaise
+              },
+              {
+                id: 'luc-a-cardio',
+                number: 'CARDIO',
+                name: 'Caminhada leve',
+                muscle: 'Cardio opcional ao final',
+                prescription: '5 minutos · Se estiver bem',
+                tip: '5 minutos de caminhada leve, apenas se estiver se sentindo bem.',
+                timerSeconds: 300,
+                timerLabel: 'Caminhada 5m',
+                isCardio: true,
+                quickOptions: [
+                  { label: '3m', secs: 180 },
+                  { label: '5m', secs: 300 }
+                ],
+                steps: [
+                  'Avalie sua disposição ao terminar a musculação.',
+                  'Se estiver bem, caminhe em ritmo leve e confortável por 5 minutos.'
+                ],
+                posture: 'Passos leves e respiração tranquila, sem forçar.',
+                svg: SVG_ICONS.cardioTreadmill
+              }
+            ]
+          },
+          B: {
+            id: 'B',
+            label: 'Treino B',
+            day: 'Quarta-feira',
+            title: 'Treino B — Ênfase em membros superiores',
+            countBadge: '4 exercícios + Cardio 5m',
+            guidelinesTitle: 'Orientações desta sessão:',
+            guidelines: [
+              'Na puxada frontal, levar a barra em direção à parte superior do peito.',
+              'No supino máquina, manter as costas apoiadas no encosto.',
+              'Na remada sentada, evitar movimentar o tronco para compensar.',
+              'Cardio opcional: 5 minutos de bicicleta leve, apenas se estiver bem.'
+            ],
+            exercises: [
+              {
+                id: 'luc-b-1',
+                number: '01',
+                name: 'Puxada frontal',
+                muscle: 'Costas e bíceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Levar a barra em direção à parte superior do peito sem jogar o tronco para trás.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Segure a barra com pegada aberta e ajuste o apoio das coxas.',
+                  'Puxe a barra em direção à parte superior do peito.',
+                  'Retorne os braços para cima de forma controlada.'
+                ],
+                posture: 'Mantenha o tronco estável, evitando balançar para trás.',
+                svg: SVG_ICONS.latPulldown
+              },
+              {
+                id: 'luc-b-2',
+                number: '02',
+                name: 'Supino máquina',
+                muscle: 'Peitoral e tríceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Manter as costas apoiadas no encosto durante toda a série.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Ajuste o assento para alinhar as manoplas com o meio do peitoral.',
+                  'Empurre as alças à frente de maneira controlada.',
+                  'Retorne devagar mantendo o controle do peso.'
+                ],
+                posture: 'Mantenha as costas e a cabeça apoiadas no encosto e os ombros baixos.',
+                svg: SVG_ICONS.chestPress
+              },
+              {
+                id: 'luc-b-3',
+                number: '03',
+                name: 'Remada sentada',
+                muscle: 'Costas e bíceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Evitar movimentar o tronco para compensar.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Apoie o peito no suporte frontal (ou mantenha coluna neutra) e segure as manoplas.',
+                  'Puxe os cotovelos para trás aproximando as escápulas.',
+                  'Retorne os braços à frente lentamente.'
+                ],
+                posture: 'Mantenha o tronco estável, sem balançar para trás.',
+                svg: SVG_ICONS.seatedRow
+              },
+              {
+                id: 'luc-b-4',
+                number: '04',
+                name: 'Rosca bíceps na máquina ou halteres',
+                muscle: 'Bíceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Manter os cotovelos próximos ao corpo ou bem apoiados na máquina.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Escolha a máquina de bíceps ou segure halteres leves ao lado do corpo.',
+                  'Flexione os cotovelos elevando a carga de forma controlada.',
+                  'Desça devagar até estender os braços sem soltar o peso.'
+                ],
+                posture: 'Cotovelos estáveis, sem balançar os ombros ou o tronco.',
+                svg: SVG_ICONS.bicepsCurl
+              },
+              {
+                id: 'luc-b-cardio',
+                number: 'CARDIO',
+                name: 'Bicicleta leve',
+                muscle: 'Cardio opcional ao final',
+                prescription: '5 minutos · Se estiver bem',
+                tip: '5 minutos de bicicleta leve, apenas se estiver se sentindo bem.',
+                timerSeconds: 300,
+                timerLabel: 'Bicicleta 5m',
+                isCardio: true,
+                quickOptions: [
+                  { label: '3m', secs: 180 },
+                  { label: '5m', secs: 300 }
+                ],
+                steps: [
+                  'Ajuste o banco na altura confortável do quadril.',
+                  'Pedale em ritmo leve durante 5 minutos, se estiver bem.'
+                ],
+                posture: 'Coluna relaxada e respiração confortável.',
+                svg: SVG_ICONS.cardioBike
+              }
+            ]
+          },
+          C: {
+            id: 'C',
+            label: 'Treino C',
+            day: 'Sexta-feira',
+            title: 'Treino C — Ênfase em glúteos e fortalecimento geral',
+            countBadge: '4 exercícios + Cardio 5m',
+            guidelinesTitle: 'Orientações desta sessão:',
+            guidelines: [
+              'Na cadeira abdutora, controlar a abertura e o retorno.',
+              'Na elevação pélvica, não exagerar na extensão da lombar.',
+              'Na cadeira flexora e no desenvolvimento, manter movimentos suaves e sem pressa.',
+              'Cardio opcional: 5 minutos de caminhada leve, apenas se estiver bem.'
+            ],
+            exercises: [
+              {
+                id: 'luc-c-1',
+                number: '01',
+                name: 'Cadeira abdutora',
+                muscle: 'Glúteo médio / lateral',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Controlar a abertura e o retorno sem deixar o peso bater.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Sente-se com a coluna apoiada no encosto.',
+                  'Abra as pernas para fora de forma controlada.',
+                  'Retorne devagar segurando o movimento.'
+                ],
+                posture: 'Tronco ereto e apoiado durante todas as 12 repetições.',
+                svg: SVG_ICONS.abductor
+              },
+              {
+                id: 'luc-c-2',
+                number: '02',
+                name: 'Elevação pélvica na máquina',
+                muscle: 'Glúteos',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Não exagerar na extensão da lombar; focar na contração dos glúteos.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Apoie as costas no encosto e ajuste o cinto sobre o quadril.',
+                  'Eleve o quadril até alinhar o tronco com as coxas, sem hiperestender a lombar.',
+                  'Desça controladamente até a posição inicial.'
+                ],
+                posture: 'Queixo levemente voltado para o peito e abdômen firme.',
+                svg: SVG_ICONS.hipThrust
+              },
+              {
+                id: 'luc-c-3',
+                number: '03',
+                name: 'Cadeira flexora',
+                muscle: 'Posterior de coxa',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Manter o movimento controlado na ida e na volta.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Ajuste o encosto e posicione os tornozelos sob o rolo.',
+                  'Flexione os joelhos de forma contínua e controlada.',
+                  'Retorne lentamente à posição inicial.'
+                ],
+                posture: 'Costas apoiadas e quadril estável no assento.',
+                svg: SVG_ICONS.legCurl
+              },
+              {
+                id: 'luc-c-4',
+                number: '04',
+                name: 'Desenvolvimento de ombros na máquina',
+                muscle: 'Ombros e tríceps',
+                prescription: '2 séries × 12 repetições · Descanso: 60–90s',
+                tip: 'Executar com carga leve e controle total na descida.',
+                timerSeconds: 60,
+                timerLabel: 'Descanso 60s',
+                isCardio: false,
+                steps: [
+                  'Regule o banco para que as manoplas fiquem na altura dos ombros.',
+                  'Empurre as alças para cima sem travar completamente os cotovelos.',
+                  'Desça devagar até a altura inicial.'
+                ],
+                posture: 'Mantenha a lombar apoiada no encosto e evite arquear as costas ao empurrar.',
+                svg: SVG_ICONS.shoulderPress
+              },
+              {
+                id: 'luc-c-cardio',
+                number: 'CARDIO',
+                name: 'Caminhada leve',
+                muscle: 'Cardio opcional ao final',
+                prescription: '5 minutos · Se estiver bem',
+                tip: '5 minutos de caminhada leve, apenas se estiver se sentindo bem.',
+                timerSeconds: 300,
+                timerLabel: 'Caminhada 5m',
+                isCardio: true,
+                quickOptions: [
+                  { label: '3m', secs: 180 },
+                  { label: '5m', secs: 300 }
+                ],
+                steps: [
+                  'Avalie sua energia ao finalizar a musculação.',
+                  'Se estiver bem, caminhe em ritmo leve durante 5 minutos.'
+                ],
+                posture: 'Ritmo leve que permita respirar sem cansaço excessivo.',
+                svg: SVG_ICONS.cardioTreadmill
+              }
+            ]
+          }
+        },
+        infoSectionsHTML: `
+          <!-- 6. ORGANIZAÇÃO DOS 50 MINUTOS (LUCIENE) -->
+          <section aria-labelledby="sessao-luc-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h2 id="sessao-luc-heading" class="text-lg font-bold text-white">Organização dos 50 minutos</h2>
+                <p class="text-xs sm:text-sm text-zinc-200 mt-1 leading-relaxed">
+                  Não precisamos preencher os 50 minutos com exercícios. <strong>O tempo disponível é um limite, não uma obrigação.</strong>
+                </p>
+              </div>
+              <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30 shrink-0">Limite: 50 min</span>
+            </div>
+            <div class="overflow-hidden rounded-xl border border-borderSubtle bg-zinc-900/90">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="bg-zinc-900 text-zinc-300 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
+                    <th class="py-3 px-4 font-semibold">Etapa</th>
+                    <th class="py-3 px-4 font-semibold text-right">Tempo</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-borderSubtle">
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-zinc-100">Aquecimento leve</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-blue-400">5 min</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-zinc-100">Musculação</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-blue-400">20–25 min</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-zinc-100">Cardio leve opcional</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-emerald-400">5 min</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-zinc-100">Recuperação e descanso</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-zinc-200">Tempo restante</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="text-xs text-zinc-200 bg-zinc-900/90 p-3.5 rounded-xl border border-zinc-800 space-y-1.5 leading-relaxed">
+              <p><strong class="text-blue-400">Intervalo entre séries:</strong> 60 a 90 segundos, podendo aumentar para <strong>120 segundos</strong> se necessário.</p>
+              <p class="text-zinc-300">O objetivo é concluir os 4 exercícios com boa técnica e sem exaustão, utilizando o tempo restante para descansar e recuperar o fôlego.</p>
+            </div>
+          </section>
 
-    <!-- JavaScript Base com Dados Completos e GIFs Reais -->
-    <script>
-        // Banco de Dados Completo com GIFs Demonstrativos Reais
-        const studentsData = {
-            carol: {
-                name: "Carol",
-                subtitle: "Emagrecimento com Preservação Muscular e Condicionamento",
-                badge: "Treinamento Full Body · 3x Semana",
-                workouts: [
-                    {
-                        id: "carol-a",
-                        name: "Treino A — Segunda-feira",
-                        desc: "Base muscular e fortalecimento geral",
-                        exercises: [
-                            { name: "Leg press 45°", target: "Quadríceps e glúteos", sets: "2", reps: "12", rest: "90s", gif: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=400&q=80", instructions: "Descer controladamente, sem tirar o quadril do encosto. Manter os joelhos alinhados com a ponta dos pés." },
-                            { name: "Cadeira extensora", target: "Quadríceps", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=400&q=80", instructions: "Estender as pernas de forma controlada, evitando movimentos bruscos ao retornar." },
-                            { name: "Cadeira flexora", target: "Posterior de coxa", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=400&q=80", instructions: "Executar sem tirar o quadril do banco, flexionando os joelhos de forma contínua." },
-                            { name: "Supino máquina", target: "Peitoral e tríceps", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=400&q=80", instructions: "Manter os ombros estáveis contra o encosto e controlar a volta do movimento." },
-                            { name: "Remada sentada na máquina", target: "Costas e bíceps", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=400&q=80", instructions: "Manter a coluna neutra e aproximar as escápulas ao puxar o peso." },
-                            { name: "Abdominal na máquina", target: "Abdômen", sets: "2", reps: "15", rest: "60s", gif: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&q=80", instructions: "Contrair o abdômen expirando o ar na descida, sem forçar o pescoço." },
-                            { name: "Caminhada na Esteira", target: "Cardio ao final", sets: "1", reps: "10 min", rest: "—", gif: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=400&q=80", instructions: "Ritmo confortável, mantendo capacidade de respirar tranquilamente." }
-                        ],
-                        guidelines: [
-                            "Executar os movimentos de maneira controlada.",
-                            "Não utilizar cargas elevadas no início.",
-                            "Evitar travar os joelhos na extensão.",
-                            "Priorizar a amplitude confortável e a execução correta.",
-                            "Se houver náusea, tontura ou fraqueza relacionada ao histórico com Mounjaro, interromper o exercício."
-                        ]
-                    },
-                    {
-                        id: "carol-b",
-                        name: "Treino B — Quarta-feira",
-                        desc: "Glúteos, posteriores e membros superiores",
-                        exercises: [
-                            { name: "Agachamento no Smith", target: "Quadríceps e glúteos", sets: "2", reps: "12", rest: "90s", gif: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=400&q=80", instructions: "Começar com pouca carga, priorizando a técnica e amplitude confortável." },
-                            { name: "Elevação pélvica na máquina", target: "Glúteos", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=400&q=80", instructions: "Subir o quadril contraindo os glúteos, sem compensar com a lombar." },
-                            { name: "Cadeira abdutora", target: "Glúteo médio", sets: "2", reps: "15", rest: "60s", gif: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=400&q=80", instructions: "Controlar bem a abertura e o retorno sem deixar o peso bater." },
-                            { name: "Puxada frontal na polia", target: "Costas", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=400&q=80", instructions: "Puxar a barra em direção ao peito superior, evitando jogar o tronco para trás." },
-                            { name: "Desenvolvimento de ombros", target: "Ombros e tríceps", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=400&q=80", instructions: "Empurrar para cima controlando a subida e a descida." },
-                            { name: "Tríceps na polia com corda", target: "Tríceps", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=400&q=80", instructions: "Manter os cotovelos fixos ao lado do corpo ao estender os braços." },
-                            { name: "Bicicleta Ergométrica", target: "Cardio ao final", sets: "1", reps: "10 min", rest: "—", gif: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=400&q=80", instructions: "Intensidade leve a moderada." }
-                        ],
-                        guidelines: [
-                            "Respeitar os intervalos de 60 a 90 segundos entre as séries.",
-                            "Manter foco na contração correta dos glúteos na elevação pélvica.",
-                            "Hidratação constante antes, durante e após o treino."
-                        ]
-                    },
-                    {
-                        id: "carol-c",
-                        name: "Treino C — Sexta-feira",
-                        desc: "Corpo inteiro e condicionamento",
-                        exercises: [
-                            { name: "Cadeira flexora", target: "Posterior de coxa", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=400&q=80", instructions: "Movimento contínuo e controlado." },
-                            { name: "Agachamento com halter (Goblet)", target: "Pernas e core", sets: "2", reps: "12", rest: "90s", gif: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=400&q=80", instructions: "Segurar o halter próximo ao peito, mantendo o tronco erguido." },
-                            { name: "Stiff com halteres leves", target: "Posterior e glúteos", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=400&q=80", instructions: "Manter a coluna neutra e flexionar levemente os joelhos." },
-                            { name: "Supino inclinado na máquina", target: "Peitoral superior", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=400&q=80", instructions: "Controlar a descida e estender os braços sem travar os cotovelos." },
-                            { name: "Remada baixa na polia", target: "Costas", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=400&q=80", instructions: "Puxar em direção ao abdômen inferior com postura firme." },
-                            { name: "Rosca bíceps com halteres", target: "Bíceps", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=400&q=80", instructions: "Flexionar os cotovelos sem balançar o tronco." },
-                            { name: "Cardio Final", target: "Esteira ou Bicicleta", sets: "1", reps: "10 min", rest: "—", gif: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=400&q=80", instructions: "Ritmo moderado para encerrar a sessão." }
-                        ],
-                        guidelines: [
-                            "Interromper imediatamente se houver dor ou mal-estar.",
-                            "Manter de 2 a 4 repetições de reserva ao terminar cada série."
-                        ]
-                    }
-                ]
-            },
-            luciene: {
-                name: "Luciene",
-                subtitle: "Treino Adaptado e Fortalecimento Geral",
-                badge: "Treino Personalizado · Baixa Energia",
-                workouts: [
-                    {
-                        id: "luciene-a",
-                        name: "Treino A — Segunda-feira",
-                        desc: "Ênfase em pernas e movimentos básicos",
-                        exercises: [
-                            { name: "Cadeira extensora", target: "Quadríceps", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=400&q=80", instructions: "Carga leve, controlando a subida e a descida." },
-                            { name: "Mesa flexora", target: "Posterior de coxa", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=400&q=80", instructions: "Executar sem movimentos bruscos." },
-                            { name: "Leg press leve", target: "Quadríceps e glúteos", sets: "2", reps: "12", rest: "90s", gif: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=400&q=80", instructions: "Utilizar carga leve e amplitude confortável." },
-                            { name: "Panturrilha sentada", target: "Panturrilhas", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=400&q=80", instructions: "Movimento completo sem pressa." },
-                            { name: "Caminhada leve na esteira", target: "Cardio opcional", sets: "1", reps: "5 min", rest: "—", gif: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=400&q=80", instructions: "Apenas se estiver bem e disposta." }
-                        ],
-                        guidelines: [
-                            "O tempo disponível é um limite, não uma obrigação.",
-                            "Aquecimento leve (5 min) e musculação (20-25 min).",
-                            "Respeitar o nível de energia do dia."
-                        ]
-                    },
-                    {
-                        id: "luciene-b",
-                        name: "Treino B — Quarta-feira",
-                        desc: "Ênfase em membros superiores",
-                        exercises: [
-                            { name: "Puxada frontal", target: "Costas", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=400&q=80", instructions: "Levar a barra em direção à parte superior do peito." },
-                            { name: "Supino máquina", target: "Peitoral", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=400&q=80", instructions: "Manter as costas apoiadas e controlar o movimento." },
-                            { name: "Remada sentada", target: "Costas", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=400&q=80", instructions: "Evitar movimentar o tronco para compensar." },
-                            { name: "Rosca bíceps", target: "Bíceps", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=400&q=80", instructions: "Manter os cotovelos próximos ao corpo." },
-                            { name: "Bicicleta leve", target: "Cardio opcional", sets: "1", reps: "5 min", rest: "—", gif: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=400&q=80", instructions: "Ritmo leve, opcional." }
-                        ],
-                        guidelines: [
-                            "Qualidade da execução vem sempre antes da pressa.",
-                            "Se estiver muito cansada, encerrar a sessão."
-                        ]
-                    },
-                    {
-                        id: "luciene-c",
-                        name: "Treino C — Sexta-feira",
-                        desc: "Ênfase em glúteos e fortalecimento geral",
-                        exercises: [
-                            { name: "Cadeira abdutora", target: "Glúteos", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=400&q=80", instructions: "Controlar a abertura e o retorno." },
-                            { name: "Elevação pélvica na máquina", target: "Glúteos", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=400&q=80", instructions: "Não exagerar na extensão da lombar." },
-                            { name: "Cadeira flexora", target: "Posterior de coxa", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=400&q=80", instructions: "Evitar movimentos rápidos." },
-                            { name: "Desenvolvimento de ombros", target: "Ombros", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=400&q=80", instructions: "Carga leve e controlada." },
-                            { name: "Caminhada leve", target: "Cardio opcional", sets: "1", reps: "5 min", rest: "—", gif: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=400&q=80", instructions: "Ritmo leve se houver disposição." }
-                        ],
-                        guidelines: [
-                            "Evitar treinos intensos nos dois dias posteriores à aplicação de Mounjaro.",
-                            "Manter hidratação adequada."
-                        ]
-                    }
-                ]
-            }
+          <!-- 7. PROGRESSÃO NAS PRIMEIRAS 8 SEMANAS (LUCIENE) -->
+          <section aria-labelledby="progressao-luc-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
+            <div>
+              <h2 id="progressao-luc-heading" class="text-lg font-bold text-white">Progressão nas primeiras 8 semanas</h2>
+              <p class="text-xs text-zinc-300 mt-0.5">Como Luciene relata baixa energia, vamos trabalhar com uma adaptação mais cuidadosa.</p>
+            </div>
+            <div class="overflow-hidden rounded-xl border border-borderSubtle bg-zinc-900/90">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="bg-zinc-900 text-zinc-300 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
+                    <th class="py-3 px-4 font-semibold w-1/3">Período</th>
+                    <th class="py-3 px-4 font-semibold">Estratégia</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-borderSubtle">
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-blue-400">Semanas 1–2</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Cargas leves, aprender movimentos e avaliar tolerância</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-blue-400">Semanas 3–4</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Melhorar execução e manter regularidade</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-emerald-400">Semanas 5–6</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Aumentar pequenas quantidades de carga se estiver bem adaptada</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-amber-400">Semanas 7–8</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Consolidar força e reavaliar evolução</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-2">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-blue-400">Intensidade recomendada (Escala de Esforço 0 a 10)</h3>
+              <ul class="space-y-1.5 text-xs sm:text-sm text-zinc-200">
+                <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span>Começar com <strong>esforço de 4 a 5</strong> em uma escala de 0 a 10.</span></li>
+                <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span>Evoluir gradualmente para <strong>5 a 6</strong>.</span></li>
+                <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span>Não realizar exercícios até a falha muscular.</span></li>
+                <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span>Terminar cada série sentindo que conseguiria fazer <strong>mais 3 ou 4 repetições</strong>.</span></li>
+                <li class="flex items-start gap-2"><span class="text-amber-400 font-bold">•</span><span><strong>Se estiver muito cansada:</strong> reduzir o número de séries ou encerrar a sessão.</span></li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 8. CUIDADOS ESPECIAIS COM O MOUNJARO (USO ATUAL — 3 SEMANAS) -->
+          <section aria-labelledby="mounjaro-luc-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
+            <div class="space-y-1">
+              <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">Atenção prioritária · Uso há 3 semanas</span>
+              <h2 id="mounjaro-luc-heading" class="text-lg font-bold text-white pt-1">Cuidados especiais com o Mounjaro</h2>
+              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">Este é o ponto que merece maior atenção no caso da Luciene. Ela está utilizando Mounjaro há apenas três semanas e relata baixa disposição:</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
+                <h3 class="font-bold text-blue-400">1. Dias pós-aplicação</h3>
+                <p class="text-zinc-200 leading-relaxed">Evitar treinos intensos nos <strong>dois dias posteriores à aplicação</strong>, caso sejam os dias em que ela apresenta mais efeitos colaterais.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
+                <h3 class="font-bold text-blue-400">2. Critério para não treinar</h3>
+                <p class="text-zinc-200 leading-relaxed">Não treinar se estiver com <strong>tontura, fraqueza importante, náuseas intensas ou sinais de desidratação</strong>.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
+                <h3 class="font-bold text-blue-400">3. Hidratação</h3>
+                <p class="text-zinc-200 leading-relaxed">Manter hidratação adequada durante todo o dia, antes, durante e após o treino.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
+                <h3 class="font-bold text-blue-400">4. Alimentação e Proteínas</h3>
+                <p class="text-zinc-200 leading-relaxed">Respeitar as refeições e a ingestão de proteínas orientadas pela nutricionista.</p>
+              </div>
+              <div class="sm:col-span-2 p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
+                <h3 class="font-bold text-blue-400">5. Sem treinos exaustivos</h3>
+                <p class="text-zinc-200 leading-relaxed">Evitar HIIT, circuitos intensos e exercícios até a exaustão neste início.</p>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-red-950/60 border border-red-500/50">
+              <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <p class="text-xs sm:text-sm text-red-100 leading-relaxed">
+                  <strong class="text-red-300 font-semibold">Orientação médica:</strong> Se a baixa energia beirar a exaustão ou vier acompanhada de outros sintomas, converse com seu médico. <strong>A dose e o horário do medicamento não devem ser alterados por conta própria.</strong>
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 9. AVALIAÇÃO DE RESULTADOS (LUCIENE) -->
+          <section aria-labelledby="avaliacao-luc-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
+            <div>
+              <h2 id="avaliacao-luc-heading" class="text-lg font-bold text-white">Avaliação de resultados</h2>
+              <p class="text-xs text-zinc-300 mt-0.5">Recomendo uma reavaliação completa a cada 30 dias, acompanhando indicadores semanais e mensais:</p>
+            </div>
+            <div class="overflow-hidden rounded-xl border border-borderSubtle bg-zinc-900/90">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="bg-zinc-900 text-zinc-300 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
+                    <th class="py-3 px-4 font-semibold">Indicador</th>
+                    <th class="py-3 px-4 font-semibold text-right">Frequência</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-borderSubtle">
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Peso corporal</td>
+                    <td class="py-2.5 px-4 text-right font-semibold text-blue-400">Semanal</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Circunferência abdominal</td>
+                    <td class="py-2.5 px-4 text-right font-semibold text-emerald-400">Mensal</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Circunferência da cintura</td>
+                    <td class="py-2.5 px-4 text-right font-semibold text-emerald-400">Mensal</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Circunferência do quadril</td>
+                    <td class="py-2.5 px-4 text-right font-semibold text-emerald-400">Mensal</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Medidas das pernas e braços</td>
+                    <td class="py-2.5 px-4 text-right font-semibold text-emerald-400">Mensal</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Evolução das cargas</td>
+                    <td class="py-2.5 px-4 text-right font-semibold text-blue-400">Semanal</td>
+                  </tr>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Disposição e condicionamento</td>
+                    <td class="py-2.5 px-4 text-right font-semibold text-blue-400">Semanal</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-xs text-zinc-300">Não devemos olhar apenas para o peso. A preservação da massa muscular e a melhora da capacidade física são resultados igualmente importantes.</p>
+          </section>
+
+          <!-- 10. RECOMENDAÇÃO FINAL (LUCIENE) -->
+          <footer class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-borderSubtle pb-4">
+              <div>
+                <span class="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold block">Planejamento — Luciene</span>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span class="text-sm sm:text-base font-bold text-white">Estruturado</span>
+                  <span class="text-zinc-500">·</span>
+                  <span class="text-sm font-semibold text-blue-400">Luciene — Fichas A, B e C</span>
+                </div>
+              </div>
+              <span class="text-xs font-medium px-3 py-1 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">Manter nas primeiras 4 semanas</span>
+            </div>
+            <div class="space-y-2.5 text-xs sm:text-sm text-zinc-200 leading-relaxed">
+              <p><strong class="text-white font-semibold">Minha recomendação final:</strong> Eu manteria esse treino durante as primeiras quatro semanas, desde que Luciene apresente boa tolerância aos exercícios. Uma diferença importante entre ela e Carol: não tentaria acelerar o emagrecimento aumentando o gasto calórico através de treinos pesados. Primeiro precisamos melhorar a disposição e criar consistência.</p>
+              <p class="text-zinc-300 text-xs bg-zinc-900/90 p-3.5 rounded-xl border border-zinc-800">Com uma boa adaptação, poderemos aumentar gradualmente o volume de musculação e o cardio, sempre acompanhando a resposta dela. O sucesso da Luciene será conseguir treinar com regularidade, ganha força e reduzir gordura sem comprometer sua saúde e recuperação.</p>
+            </div>
+          </footer>
+        `
+      }
+    };
+
+    // Estado da aplicação (salvo no localStorage para não perder progresso no celular)
+    const STORAGE_KEY = 'meu_treino_carol_luciene_v3';
+    const STUDENTS_STORAGE_KEY = 'meu_treino_alunos_v1';
+    let completedSet = new Set();
+    let currentStudentProgramKey = 'carol';
+    let currentWorkoutTab = 'A';
+    const timersState = {};
+
+    // Inicializa estado dos cronômetros para todos os exercícios de todas as alunas
+    function initAllTimers() {
+      Object.values(STUDENT_PROGRAMS).forEach((program) => {
+        Object.values(program.workouts).forEach((plan) => {
+          plan.exercises.forEach((ex) => {
+            timersState[ex.id] = {
+              defaultSeconds: ex.timerSeconds,
+              remaining: ex.timerSeconds,
+              intervalId: null,
+              running: false
+            };
+          });
+        });
+      });
+    }
+    initAllTimers();
+
+    // Lista inicial padrão de alunos (Carol e Luciene com Fichas A, B e C completas)
+    const DEFAULT_STUDENTS = [
+      {
+        id: 'carol',
+        name: 'Carol',
+        badge: 'Fichas A · B · C',
+        goal: 'Emagrecimento e base muscular',
+        frequency: '3 vezes por semana',
+        level: 'Iniciante',
+        hasFullWorkout: true,
+        isCustom: false
+      },
+      {
+        id: 'luciene',
+        name: 'Luciene',
+        badge: 'Fichas A · B · C',
+        goal: 'Disposição, força e adaptação',
+        frequency: '3 vezes por semana',
+        level: 'Iniciante',
+        hasFullWorkout: true,
+        isCustom: false
+      }
+    ];
+
+    let studentsList = [...DEFAULT_STUDENTS];
+    let currentViewingStudentId = null;
+
+    // Carregar alunos personalizados salvos no localStorage
+    function loadStudents() {
+      try {
+        const saved = localStorage.getItem(STUDENTS_STORAGE_KEY);
+        if (saved) {
+          const customStudents = JSON.parse(saved);
+          if (Array.isArray(customStudents)) {
+            studentsList = [...DEFAULT_STUDENTS, ...customStudents];
+          }
+        }
+      } catch (e) {
+        console.warn('Não foi possível ler a lista de alunos.', e);
+      }
+    }
+
+    // Salvar apenas os alunos adicionados pelo usuário
+    function saveCustomStudents() {
+      try {
+        const customOnly = studentsList.filter((s) => s.isCustom);
+        localStorage.setItem(STUDENTS_STORAGE_KEY, JSON.stringify(customOnly));
+      } catch (e) {
+        console.warn('Não foi possível salvar a lista de alunos.', e);
+      }
+    }
+
+    // Retorna o programa ativo (Carol ou Luciene)
+    function getActiveProgram() {
+      return STUDENT_PROGRAMS[currentStudentProgramKey] || STUDENT_PROGRAMS.carol;
+    }
+
+    // Renderiza cabeçalho, resumo e blocos informativos específicos da aluna selecionada
+    function renderStudentProgramShell() {
+      const program = getActiveProgram();
+
+      document.getElementById('header-student-badge').textContent = program.upperName;
+      document.getElementById('header-meta-badge').textContent = program.metaBadge;
+      document.getElementById('header-main-title').textContent = program.headerTitle;
+      document.getElementById('header-main-subtitle').textContent = program.headerSubtitle;
+      document.getElementById('perfil-heading').textContent = program.summaryHeading;
+
+      document.getElementById('summary-cards-grid').innerHTML = program.summaryCards
+        .map(
+          (card) => `
+            <div class="bg-graphite border border-borderSubtle rounded-2xl p-4 shadow-md">
+              <span class="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold block">${card.label}</span>
+              <p class="text-lg sm:text-xl font-extrabold ${card.color} mt-0.5">${card.value} <span class="text-xs font-medium text-zinc-400">${card.unit}</span></p>
+            </div>
+          `
+        )
+        .join('');
+
+      document.getElementById('summary-priority-box').innerHTML = program.priorityHTML;
+      document.getElementById('student-info-sections').innerHTML = program.infoSectionsHTML;
+    }
+
+    // Troca entre Treino A, Treino B e Treino C da aluna ativa
+    function switchWorkoutTab(tabKey) {
+      const program = getActiveProgram();
+      if (!program.workouts[tabKey]) return;
+      currentWorkoutTab = tabKey;
+
+      ['A', 'B', 'C'].forEach((key) => {
+        const btn = document.getElementById(`tab-btn-${key}`);
+        if (!btn) return;
+        const isSelected = key === tabKey;
+        btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        if (isSelected) {
+          btn.className = 'py-3 px-2 sm:px-4 rounded-xl text-center transition cursor-pointer bg-blue-600 text-white shadow-md';
+          btn.querySelector('span:last-child').className = 'block text-[10px] sm:text-xs opacity-90 mt-0.5';
+        } else {
+          btn.className = 'py-3 px-2 sm:px-4 rounded-xl text-center transition cursor-pointer bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300';
+          btn.querySelector('span:last-child').className = 'block text-[10px] sm:text-xs text-zinc-400 mt-0.5';
+        }
+      });
+
+      const plan = program.workouts[tabKey];
+      document.getElementById('workout-day-badge').textContent = plan.day;
+      document.getElementById('treino-heading').textContent = plan.title;
+      document.getElementById('workout-count-badge').textContent = plan.countBadge;
+      document.getElementById('workout-guidelines-title').textContent = plan.guidelinesTitle;
+
+      const guidelinesEl = document.getElementById('workout-guidelines-list');
+      guidelinesEl.innerHTML = plan.guidelines
+        .map(
+          (item) => `
+            <li class="flex items-start gap-2">
+              <span class="text-blue-400 font-bold">•</span>
+              <span>${item}</span>
+            </li>
+          `
+        )
+        .join('');
+
+      renderExercises();
+      updateHeaderProgress();
+    }
+
+    // Navegação entre Telas (Home <-> Ficha da Carol/Luciene <-> Perfil em montagem)
+    function showHomeView() {
+      document.getElementById('workout-view').classList.add('hidden');
+      document.getElementById('placeholder-student-view').classList.add('hidden');
+      document.getElementById('home-view').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      renderStudentsGrid();
+    }
+
+    function openStudentProfile(studentId) {
+      const student = studentsList.find((s) => s.id === studentId);
+      if (!student) return;
+
+      currentViewingStudentId = studentId;
+      document.getElementById('home-view').classList.add('hidden');
+
+      if (student.hasFullWorkout && STUDENT_PROGRAMS[student.id]) {
+        currentStudentProgramKey = student.id;
+        document.getElementById('placeholder-student-view').classList.add('hidden');
+        document.getElementById('workout-view').classList.remove('hidden');
+        renderStudentProgramShell();
+        switchWorkoutTab('A');
+      } else {
+        document.getElementById('workout-view').classList.add('hidden');
+        document.getElementById('placeholder-student-title').textContent = `💪 MEU TREINO — ${student.name.toUpperCase()}`;
+        document.getElementById('placeholder-student-goal').textContent = student.goal;
+        document.getElementById('placeholder-student-freq').textContent = student.frequency;
+        document.getElementById('placeholder-student-level').textContent = student.level;
+
+        const deleteBtn = document.getElementById('delete-custom-student-btn');
+        if (student.isCustom) {
+          deleteBtn.classList.remove('hidden');
+        } else {
+          deleteBtn.classList.add('hidden');
+        }
+
+        document.getElementById('placeholder-student-view').classList.remove('hidden');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Renderiza os cartões dos alunos + botão "+" na Tela Inicial
+    function renderStudentsGrid() {
+      const grid = document.getElementById('students-grid');
+      const countBadge = document.getElementById('students-count-badge');
+      if (!grid) return;
+
+      countBadge.textContent = `${studentsList.length} ${studentsList.length === 1 ? 'aluno' : 'alunos'}`;
+
+      const studentCardsHTML = studentsList
+        .map((student) => {
+          const hasProgram = Boolean(STUDENT_PROGRAMS[student.id]);
+          let progressInfo = student.goal;
+
+          if (hasProgram) {
+            const prog = STUDENT_PROGRAMS[student.id];
+            const allEx = Object.values(prog.workouts).flatMap((w) => w.exercises);
+            const doneCount = allEx.filter((ex) => completedSet.has(ex.id)).length;
+            progressInfo = `3 treinos (A, B, C) · ${doneCount}/${allEx.length} itens marcados`;
+          }
+
+          return `
+            <button
+              type="button"
+              onclick="openStudentProfile('${student.id}')"
+              class="group text-left bg-graphite hover:bg-surfaceHover active:scale-[0.99] border ${
+                hasProgram ? 'border-blue-500/45 shadow-blue-950/20' : 'border-borderSubtle'
+              } rounded-2xl p-5 shadow-lg transition-all duration-200 flex flex-col justify-between gap-4 cursor-pointer relative overflow-hidden"
+            >
+              ${
+                hasProgram
+                  ? '<div class="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl pointer-events-none"></div>'
+                  : ''
+              }
+
+              <div class="flex items-start justify-between gap-2">
+                <div class="w-11 h-11 rounded-xl ${
+                  student.id === 'carol'
+                    ? 'bg-gradient-to-br from-blue-500 to-orange-500 text-white'
+                    : student.id === 'luciene'
+                    ? 'bg-gradient-to-br from-sky-500 to-emerald-500 text-white'
+                    : 'bg-zinc-800 text-zinc-200 border border-zinc-700'
+                } font-extrabold text-lg flex items-center justify-center shadow-sm">
+                  ${student.name.charAt(0).toUpperCase()}
+                </div>
+
+                <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full ${
+                  hasProgram
+                    ? 'bg-blue-500/15 text-blue-400 border border-blue-500/30'
+                    : 'bg-zinc-800/90 text-zinc-400 border border-zinc-700/80'
+                }">
+                  ${student.badge}
+                </span>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between">
+                  <h2 class="text-xl font-bold text-white group-hover:text-blue-400 transition">
+                    ${student.name}
+                  </h2>
+                  <svg class="w-4 h-4 text-zinc-500 group-hover:text-blue-400 group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+                <p class="text-xs text-zinc-400 mt-1">
+                  ${progressInfo}
+                </p>
+              </div>
+            </button>
+          `;
+        })
+        .join('');
+
+      // Botão "+" fiel ao rascunho para cadastrar novo aluno
+      const addButtonHTML = `
+        <button
+          type="button"
+          onclick="openAddStudentModal()"
+          aria-label="Adicionar novo aluno"
+          class="group min-h-[140px] bg-graphite/60 hover:bg-surfaceHover active:scale-[0.99] border-2 border-dashed border-zinc-700 hover:border-blue-500/60 rounded-2xl p-5 transition-all duration-200 flex flex-col items-center justify-center gap-2 text-zinc-400 hover:text-white cursor-pointer"
+        >
+          <div class="w-12 h-12 rounded-2xl bg-zinc-900 group-hover:bg-blue-600/20 border border-zinc-800 group-hover:border-blue-500/40 flex items-center justify-center transition">
+            <svg class="w-7 h-7 text-zinc-300 group-hover:text-blue-400 transition" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+          </div>
+          <span class="text-xs font-semibold tracking-wide">Adicionar aluno</span>
+        </button>
+      `;
+
+      grid.innerHTML = studentCardsHTML + addButtonHTML;
+    }
+
+    // Modal de Adicionar Aluno
+    function openAddStudentModal() {
+      const modal = document.getElementById('add-student-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      setTimeout(() => {
+        document.getElementById('student-name-input').focus();
+      }, 50);
+    }
+
+    function closeAddStudentModal() {
+      const modal = document.getElementById('add-student-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.getElementById('add-student-form').reset();
+    }
+
+    // Carregar progresso salvo
+    function loadProgress() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) {
+            completedSet = new Set(parsed);
+          }
+        }
+      } catch (e) {
+        console.warn('Não foi possível ler o armazenamento local.', e);
+      }
+    }
+
+    // Salvar progresso
+    function saveProgress() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([...completedSet]));
+      } catch (e) {
+        console.warn('Não foi possível salvar no armazenamento local.', e);
+      }
+    }
+
+    // Formata segundos para MM:SS
+    function formatTime(totalSeconds) {
+      const mins = Math.floor(totalSeconds / 60);
+      const secs = totalSeconds % 60;
+      return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    // Exibe notificação discreta na tela (sem alert)
+    let toastTimeout = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast-notification');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 4500);
+    }
+
+    // Som suave opcional ao encerrar o descanso usando Web Audio API
+    function playBeep() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(660, ctx.currentTime);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.45);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.45);
+      } catch (e) {
+        // Ignora caso o navegador bloqueie áudio automático
+      }
+    }
+
+    // Auxiliar para encontrar um exercício em qualquer ficha da Carol ou da Luciene
+    function findExerciseById(id) {
+      for (const program of Object.values(STUDENT_PROGRAMS)) {
+        for (const plan of Object.values(program.workouts)) {
+          const found = plan.exercises.find((item) => item.id === id);
+          if (found) return found;
+        }
+      }
+      return null;
+    }
+
+    // Atualiza a barra de progresso do cabeçalho referente à ficha selecionada
+    function updateHeaderProgress() {
+      const program = getActiveProgram();
+      const plan = program.workouts[currentWorkoutTab];
+      const total = plan.exercises.length;
+      const done = plan.exercises.filter((ex) => completedSet.has(ex.id)).length;
+      const percent = Math.round((done / total) * 100);
+
+      document.getElementById('progress-label').textContent = `Progresso do ${plan.label} (${plan.day})`;
+      document.getElementById('progress-text').textContent = `${done}/${total} concluídos`;
+      document.getElementById('progress-bar').style.width = `${percent}%`;
+
+      const congratsBanner = document.getElementById('congrats-banner');
+      const congratsText = document.getElementById('congrats-text');
+      if (done === total) {
+        congratsText.textContent = `Parabéns, ${program.name}! Você concluiu todos os exercícios do ${plan.label} (${plan.day}).`;
+        congratsBanner.classList.remove('hidden');
+      } else {
+        congratsBanner.classList.add('hidden');
+      }
+    }
+
+    // Alterna conclusão de um exercício
+    function toggleExerciseDone(id) {
+      if (completedSet.has(id)) {
+        completedSet.delete(id);
+      } else {
+        completedSet.add(id);
+      }
+      saveProgress();
+      updateHeaderProgress();
+      updateCardVisualState(id);
+    }
+
+    // Atualiza visual do cartão quando marcado/desmarcado
+    function updateCardVisualState(id) {
+      const card = document.getElementById(`card-${id}`);
+      const checkBtn = document.getElementById(`check-${id}`);
+      if (!card || !checkBtn) return;
+
+      const isDone = completedSet.has(id);
+      if (isDone) {
+        card.classList.add('border-emerald-500/40', 'bg-zinc-900/60');
+        card.classList.remove('border-borderSubtle', 'bg-graphite');
+        checkBtn.classList.add('bg-emerald-500', 'border-emerald-500', 'text-zinc-950');
+        checkBtn.classList.remove('bg-zinc-900', 'border-zinc-600', 'text-transparent');
+      } else {
+        card.classList.remove('border-emerald-500/40', 'bg-zinc-900/60');
+        card.classList.add('border-borderSubtle', 'bg-graphite');
+        checkBtn.classList.remove('bg-emerald-500', 'border-emerald-500', 'text-zinc-950');
+        checkBtn.classList.add('bg-zinc-900', 'border-zinc-600', 'text-transparent');
+      }
+    }
+
+    // Controles do Cronômetro Integrado
+    function startTimer(id, customSeconds = null) {
+      const state = timersState[id];
+      if (!state) return;
+
+      if (customSeconds !== null) {
+        stopTimer(id);
+        state.remaining = customSeconds;
+      }
+
+      if (state.running) return;
+      if (state.remaining <= 0) {
+        state.remaining = state.defaultSeconds;
+      }
+
+      state.running = true;
+      updateTimerUI(id);
+
+      state.intervalId = setInterval(() => {
+        state.remaining -= 1;
+        updateTimerUI(id);
+
+        if (state.remaining <= 0) {
+          stopTimer(id);
+          const ex = findExerciseById(id);
+          playBeep();
+          showToast(`⏰ Tempo concluído: ${ex ? ex.name : 'Exercício'}!`);
+        }
+      }, 1000);
+    }
+
+    function stopTimer(id) {
+      const state = timersState[id];
+      if (!state) return;
+      if (state.intervalId) {
+        clearInterval(state.intervalId);
+        state.intervalId = null;
+      }
+      state.running = false;
+      updateTimerUI(id);
+    }
+
+    function resetTimer(id, seconds = null) {
+      stopTimer(id);
+      const state = timersState[id];
+      if (!state) return;
+      state.remaining = seconds !== null ? seconds : state.defaultSeconds;
+      updateTimerUI(id);
+    }
+
+    function updateTimerUI(id) {
+      const state = timersState[id];
+      const display = document.getElementById(`timer-display-${id}`);
+      const toggleBtn = document.getElementById(`timer-toggle-${id}`);
+      const box = document.getElementById(`timer-box-${id}`);
+      if (!state || !display || !toggleBtn || !box) return;
+
+      display.textContent = formatTime(state.remaining);
+
+      if (state.running) {
+        box.classList.add('timer-active', 'border-blue-500/60');
+        toggleBtn.textContent = 'Pausar';
+        toggleBtn.classList.remove('bg-blue-600', 'hover:bg-blue-500');
+        toggleBtn.classList.add('bg-amber-600', 'hover:bg-amber-500');
+      } else {
+        box.classList.remove('timer-active', 'border-blue-500/60');
+        toggleBtn.textContent = state.remaining < state.defaultSeconds && state.remaining > 0 ? 'Continuar' : 'Iniciar';
+        toggleBtn.classList.add('bg-blue-600', 'hover:bg-blue-500');
+        toggleBtn.classList.remove('bg-amber-600', 'hover:bg-amber-500');
+      }
+    }
+
+    // Abre o modal de demonstração
+    function openDemoModal(id) {
+      const ex = findExerciseById(id);
+      if (!ex) return;
+
+      document.getElementById('modal-badge').textContent = `${ex.number} · ${ex.muscle}`;
+      document.getElementById('modal-title').textContent = ex.name;
+      document.getElementById('modal-illustration').innerHTML = ex.svg;
+      document.getElementById('modal-posture').textContent = ex.posture;
+
+      const stepsContainer = document.getElementById('modal-steps');
+      stepsContainer.innerHTML = ex.steps
+        .map((step) => `<li class="leading-relaxed">${step}</li>`)
+        .join('');
+
+      const modal = document.getElementById('demo-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDemoModal() {
+      const modal = document.getElementById('demo-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Renderiza todos os cartões de exercícios da ficha atualmente selecionada
+    function renderExercises() {
+      const container = document.getElementById('exercises-list');
+      const program = getActiveProgram();
+      const plan = program.workouts[currentWorkoutTab];
+
+      container.innerHTML = plan.exercises.map((ex) => {
+        const isDone = completedSet.has(ex.id);
+        const state = timersState[ex.id];
+        const currentRemaining = state ? state.remaining : ex.timerSeconds;
+
+        // Opções de tempo extra para descanso (60s / 90s / 120s) ou cardio (5m / 8m / 10m)
+        const quickOptions = ex.quickOptions || [
+          { label: '60s', secs: 60 },
+          { label: '90s', secs: 90 },
+          { label: '120s', secs: 120 }
+        ];
+        const quickTimeButtons = `
+          <div class="flex items-center gap-1.5">
+            ${quickOptions
+              .map(
+                (opt) =>
+                  `<button type="button" onclick="resetTimer('${ex.id}', ${opt.secs})" class="px-2 py-1 rounded-lg text-[11px] font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-300 transition cursor-pointer">${opt.label}</button>`
+              )
+              .join('')}
+          </div>
+        `;
+
+        const numberBadgeStyle = ex.isCardio
+          ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
+          : 'bg-blue-500/15 text-blue-400 border-blue-500/30';
+
+        return `
+          <article
+            id="card-${ex.id}"
+            class="border rounded-2xl p-4 sm:p-5 transition-all duration-300 shadow-lg ${
+              isDone ? 'border-emerald-500/40 bg-zinc-900/60' : 'border-borderSubtle bg-graphite'
+            }"
+          >
+            <div class="flex flex-col sm:flex-row gap-4">
+              <!-- Coluna Esquerda: Ilustração SVG + Botão Demonstração -->
+              <div class="flex sm:flex-col items-center justify-between sm:justify-start gap-3 sm:w-32 shrink-0">
+                <div class="w-24 h-16 sm:w-full sm:h-20 rounded-xl bg-zinc-900/90 border border-borderSubtle p-2 flex items-center justify-center">
+                  ${ex.svg}
+                </div>
+                <button
+                  type="button"
+                  onclick="openDemoModal('${ex.id}')"
+                  class="inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:w-full rounded-xl text-xs font-semibold bg-zinc-800/90 hover:bg-zinc-700 text-blue-400 border border-zinc-700/80 transition cursor-pointer"
+                >
+                  <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                  Ver demonstração
+                </button>
+              </div>
+
+              <!-- Coluna Direita: Detalhes, Checkbox e Cronômetro -->
+              <div class="flex-1 space-y-3">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <div class="flex flex-wrap items-center gap-2">
+                      <span class="text-xs font-extrabold px-2 py-0.5 rounded-md border ${numberBadgeStyle}">
+                        ${ex.number}
+                      </span>
+                      <h3 class="text-base sm:text-lg font-bold text-white">
+                        ${ex.name}
+                      </h3>
+                    </div>
+                    <p class="text-xs font-medium text-zinc-400 mt-0.5">
+                      ${ex.muscle}
+                    </p>
+                  </div>
+
+                  <!-- Botão / Checkbox de Concluir Exercício -->
+                  <button
+                    id="check-${ex.id}"
+                    type="button"
+                    onclick="toggleExerciseDone('${ex.id}')"
+                    aria-label="Marcar ${ex.name} como concluído"
+                    class="w-9 h-9 rounded-xl border-2 flex items-center justify-center transition active:scale-90 shrink-0 cursor-pointer ${
+                      isDone
+                        ? 'bg-emerald-500 border-emerald-500 text-zinc-950'
+                        : 'bg-zinc-900 border-zinc-600 text-transparent hover:border-blue-400'
+                    }"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Prescrição e Dica Rápida -->
+                <div class="space-y-1.5">
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-zinc-900 border border-zinc-800 text-xs sm:text-sm font-semibold text-zinc-200">
+                    <span class="w-1.5 h-1.5 rounded-full ${ex.isCardio ? 'bg-emerald-500' : 'bg-red-500'}"></span>
+                    ${ex.prescription}
+                  </div>
+                  <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                    ${ex.tip}
+                  </p>
+                </div>
+
+                <!-- Cronômetro de Descanso / Atividade Integrado -->
+                <div
+                  id="timer-box-${ex.id}"
+                  class="pt-2.5 mt-2 border-t border-borderSubtle/80 flex flex-wrap items-center justify-between gap-2 rounded-xl px-3 py-2 bg-zinc-900/75 border border-zinc-800/90 transition"
+                >
+                  <div class="flex items-center gap-2.5">
+                    <svg class="w-4 h-4 text-blue-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-xs text-zinc-400 font-medium">${ex.timerLabel}:</span>
+                    <span id="timer-display-${ex.id}" class="font-mono text-sm sm:text-base font-bold text-white tracking-wider">
+                      ${formatTime(currentRemaining)}
+                    </span>
+                  </div>
+
+                  <div class="flex items-center gap-2">
+                    ${quickTimeButtons}
+                    <button
+                      id="timer-toggle-${ex.id}"
+                      type="button"
+                      onclick="timersState['${ex.id}'].running ? stopTimer('${ex.id}') : startTimer('${ex.id}')"
+                      class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white transition cursor-pointer"
+                    >
+                      ${state && state.running ? 'Pausar' : 'Iniciar'}
+                    </button>
+                    <button
+                      type="button"
+                      onclick="resetTimer('${ex.id}')"
+                      class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-zinc-800 hover:bg-zinc-700 text-zinc-300 transition cursor-pointer"
+                    >
+                      Zerar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // Eventos globais após o carregamento da página
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProgress();
+      loadStudents();
+      renderStudentsGrid();
+      renderStudentProgramShell();
+      switchWorkoutTab('A');
+
+      // Botões de voltar para a Tela Inicial
+      document.getElementById('back-to-home-btn').addEventListener('click', showHomeView);
+      document.getElementById('back-from-placeholder-btn').addEventListener('click', showHomeView);
+
+      // Modal de novo aluno
+      document.getElementById('close-add-student-btn').addEventListener('click', closeAddStudentModal);
+      document.getElementById('cancel-add-student-btn').addEventListener('click', closeAddStudentModal);
+      document.getElementById('add-student-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'add-student-modal') closeAddStudentModal();
+      });
+
+      document.getElementById('add-student-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('student-name-input').value.trim();
+        if (!nameInput) return;
+
+        const goal = document.getElementById('student-goal-input').value;
+        const frequency = document.getElementById('student-freq-input').value;
+        const level = document.getElementById('student-level-input').value;
+
+        const newStudent = {
+          id: 'student-' + Date.now(),
+          name: nameInput,
+          badge: 'Ficha em montagem',
+          goal,
+          frequency,
+          level,
+          hasFullWorkout: false,
+          isCustom: true
         };
 
-        // Estado atual
-        let currentStudentKey = null;
-        let currentWorkoutIndex = 0;
-        let completedExercises = {};
-        let timerInterval = null;
+        studentsList.push(newStudent);
+        saveCustomStudents();
+        renderStudentsGrid();
+        closeAddStudentModal();
+        showToast(`Aluno(a) ${nameInput} adicionado(a) com sucesso!`);
+      });
 
-        function selectStudent(key) {
-            currentStudentKey = key;
-            currentWorkoutIndex = 0;
-            const student = studentsData[key];
-            if (!student) return;
-
-            document.getElementById('home-view').classList.add('hidden');
-            document.getElementById('workout-view').classList.remove('hidden');
-
-            document.getElementById('header-student-badge').innerText = student.badge;
-            document.getElementById('student-name-title').innerText = student.name;
-            document.getElementById('student-subtitle').innerText = student.subtitle;
-
-            loadCompletedState();
-            renderWorkoutTabs();
-            renderActiveWorkout();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Remover aluno personalizado
+      document.getElementById('delete-custom-student-btn').addEventListener('click', () => {
+        if (!currentViewingStudentId) return;
+        const removed = studentsList.find((s) => s.id === currentViewingStudentId);
+        studentsList = studentsList.filter((s) => s.id !== currentViewingStudentId);
+        saveCustomStudents();
+        showHomeView();
+        if (removed) {
+          showToast(`Perfil de ${removed.name} removido.`);
         }
+      });
+      // Botão de reiniciar a ficha atualmente selecionada (A, B ou C)
+      document.getElementById('reset-workout-btn').addEventListener('click', () => {
+        const program = getActiveProgram();
+        const plan = program.workouts[currentWorkoutTab];
+        plan.exercises.forEach((ex) => {
+          completedSet.delete(ex.id);
+          resetTimer(ex.id);
+          updateCardVisualState(ex.id);
+        });
+        saveProgress();
+        updateHeaderProgress();
+        showToast(`${plan.label} de ${program.name} (${plan.day}) reiniciado com sucesso!`);
+      });
 
-        function goHome() {
-            stopTimer();
-            document.getElementById('workout-view').classList.add('hidden');
-            document.getElementById('home-view').classList.remove('hidden');
-            currentStudentKey = null;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Eventos de fechamento do modal
+      document.getElementById('close-modal-btn').addEventListener('click', closeDemoModal);
+      document.getElementById('modal-confirm-btn').addEventListener('click', closeDemoModal);
+      document.getElementById('demo-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'demo-modal') closeDemoModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeDemoModal();
+          closeAddStudentModal();
         }
-
-        function renderWorkoutTabs() {
-            const student = studentsData[currentStudentKey];
-            const container = document.getElementById('workout-tabs');
-            container.innerHTML = '';
-
-            student.workouts.forEach((w, idx) => {
-                const btn = document.createElement('button');
-                const isActive = idx === currentWorkoutIndex;
-                btn.className = `px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap ${
-                    isActive 
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 border border-blue-500' 
-                    : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700 border border-zinc-700'
-                }`;
-                btn.innerText = w.name.split('—')[0].trim();
-                btn.onclick = () => {
-                    currentWorkoutIndex = idx;
-                    renderWorkoutTabs();
-                    renderActiveWorkout();
-                };
-                container.appendChild(btn);
-            });
-        }
-
-        function renderActiveWorkout() {
-            const student = studentsData[currentStudentKey];
-            const workout = student.workouts[currentWorkoutIndex];
-
-            document.getElementById('workout-guidelines-title').innerText = workout.name + " — " + workout.desc;
-
-            const listContainer = document.getElementById('exercises-list');
-            listContainer.innerHTML = '';
-
-            workout.exercises.forEach((ex, idx) => {
-                const isCompleted = completedExercises[`${currentStudentKey}-${currentWorkoutIndex}-${idx}`] || false;
-
-                const card = document.createElement('div');
-                card.className = `bg-zinc-900 border rounded-2xl p-4 sm:p-5 transition-all duration-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ${
-                    isCompleted ? 'border-blue-500/50 bg-blue-950/10' : 'border-zinc-800 hover:border-zinc-700'
-                }`;
-
-                card.innerHTML = `
-                    <div class="flex items-start sm:items-center space-x-4 w-full sm:w-auto">
-                        <!-- Miniatura GIF / Ícone -->
-                        <div onclick="openExerciseModal(${idx})" class="w-16 h-16 rounded-xl bg-zinc-800 flex-shrink-0 overflow-hidden border border-zinc-700 cursor-pointer relative group">
-                            <img src="${ex.gif}" alt="${ex.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                            <div class="absolute inset-0 bg-blue-600/20 items-center justify-center text-white text-xs font-bold hidden">Ver</div>
-                        </div>
-                        <div>
-                            <div class="flex items-center space-x-2">
-                                <span class="text-xs font-bold text-blue-400">#${idx + 1}</span>
-                                <span class="text-xs text-zinc-400">• ${ex.target}</span>
-                            </div>
-                            <h4 onclick="openExerciseModal(${idx})" class="text-base font-bold text-white hover:text-blue-400 cursor-pointer transition-colors mt-0.5">${ex.name}</h4>
-                            <div class="flex items-center space-x-3 mt-1 text-xs text-zinc-300 font-medium">
-                                <span class="bg-zinc-800 px-2 py-0.5 rounded border border-zinc-700">Séries: ${ex.sets}</span>
-                                <span class="bg-zinc-800 px-2 py-0.5 rounded border border-zinc-700">Rep.: ${ex.reps}</span>
-                                <span class="text-zinc-400">Descanso: ${ex.rest}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2 w-full sm:w-auto justify-end border-t sm:border-t-0 pt-3 sm:pt-0 border-zinc-800">
-                        <button onclick="openExerciseModal(${idx})" class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-semibold rounded-xl transition-colors border border-zinc-700">
-                            🎥 Instruções
-                        </button>
-                        <button onclick="toggleExerciseComplete(${idx})" class="px-4 py-1.5 rounded-xl text-xs font-semibold transition-colors border ${
-                            isCompleted 
-                            ? 'bg-blue-600 text-white border-blue-500' 
-                            : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border-zinc-700'
-                        }">
-                            ${isCompleted ? '✓ Concluído' : 'Marcar'}
-                        </button>
-                    </div>
-                `;
-                listContainer.appendChild(card);
-            });
-
-            // Renderizar orientações
-            const guidelinesList = document.getElementById('guidelines-list');
-            guidelinesList.innerHTML = '';
-            workout.guidelines.forEach(g => {
-                const li = document.createElement('li');
-                li.className = "flex items-start space-x-2 text-zinc-300";
-                li.innerHTML = `<span class="text-blue-500 font-bold">•</span> <span>${g}</span>`;
-                guidelinesList.appendChild(li);
-            });
-
-            updateProgressBar();
-        }
-
-        function toggleExerciseComplete(exerciseIdx) {
-            const key = `${currentStudentKey}-${currentWorkoutIndex}-${exerciseIdx}`;
-            completedExercises[key] = !completedExercises[key];
-            saveCompletedState();
-            renderActiveWorkout();
-        }
-
-        function updateProgressBar() {
-            const student = studentsData[currentStudentKey];
-            const workout = student.workouts[currentWorkoutIndex];
-            const total = workout.exercises.length;
-            let completed = 0;
-
-            workout.exercises.forEach((_, idx) => {
-                if (completedExercises[`${currentStudentKey}-${currentWorkoutIndex}-${idx}`]) {
-                    completed++;
-                }
-            });
-
-            const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
-            document.getElementById('progress-bar').style.width = `${percent}%`;
-            document.getElementById('progress-text').innerText = `${completed} de ${total} concluídos`;
-        }
-
-        function resetProgress() {
-            const student = studentsData[currentStudentKey];
-            student.workouts.forEach((w, wIdx) => {
-                w.exercises.forEach((_, eIdx) => {
-                    delete completedExercises[`${currentStudentKey}-${wIdx}-${eIdx}`];
-                });
-            });
-            saveCompletedState();
-            renderActiveWorkout();
-        }
-
-        function saveCompletedState() {
-            localStorage.setItem('meu_treino_progress', JSON.stringify(completedExercises));
-        }
-
-        function loadCompletedState() {
-            const saved = localStorage.getItem('meu_treino_progress');
-            if (saved) {
-                try {
-                    completedExercises = JSON.parse(saved);
-                } catch (e) {
-                    completedExercises = {};
-                }
-            }
-        }
-
-        // Modal de Exercício
-        let activeModalExercise = null;
-        function openExerciseModal(exerciseIdx) {
-            const student = studentsData[currentStudentKey];
-            const workout = student.workouts[currentWorkoutIndex];
-            const ex = workout.exercises[exerciseIdx];
-            activeModalExercise = ex;
-
-            document.getElementById('modal-exercise-title').innerText = ex.name;
-            document.getElementById('modal-exercise-category').innerText = ex.target;
-            document.getElementById('modal-exercise-desc').innerText = ex.instructions;
-            document.getElementById('modal-exercise-gif').src = ex.gif;
-
-            document.getElementById('exercise-modal').classList.remove('hidden');
-        }
-
-        function closeExerciseModal() {
-            document.getElementById('exercise-modal').classList.add('hidden');
-        }
-
-        // Modal Adicionar Aluno
-        function openAddStudentModal() {
-            document.getElementById('add-student-modal').classList.remove('hidden');
-        }
-        function closeAddStudentModal() {
-            document.getElementById('add-student-modal').classList.add('hidden');
-            document.getElementById('new-student-name').value = '';
-        }
-        function saveNewStudent() {
-            const nameInput = document.getElementById('new-student-name').value.trim();
-            if (!nameInput) {
-                alert('Por favor, digite o nome do aluno.');
-                return;
-            }
-            const key = nameInput.toLowerCase().replace(/\s+/g, '_');
-            studentsData[key] = {
-                name: nameInput,
-                subtitle: "Treino Personalizado",
-                badge: "Novo Aluno",
-                workouts: [
-                    {
-                        id: key + "-a",
-                        name: "Treino A — Geral",
-                        desc: "Adaptação e fortalecimento",
-                        exercises: [
-                            { name: "Cadeira extensora", target: "Quadríceps", sets: "2", reps: "12", rest: "60s", gif: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=400&q=80", instructions: "Executar de forma controlada." }
-                        ],
-                        guidelines: ["Começar com cargas leves e aprender os movimentos."]
-                    }
-                ]
-            };
-
-            closeAddStudentModal();
-            location.reload();
-        }
-
-        // Cronômetro
-        function startTimer(seconds) {
-            stopTimer();
-            let timeLeft = seconds;
-            const display = document.getElementById('timer-display');
-            
-            updateDisplay(timeLeft);
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                updateDisplay(timeLeft);
-                if (timeLeft <= 0) {
-                    stopTimer();
-                    display.innerText = "Tempo!";
-                }
-            }, 1000);
-        }
-
-        function stopTimer() {
-            if (timerInterval) clearInterval(timerInterval);
-            document.getElementById('timer-display').innerText = "00:00";
-        }
-
-        function updateDisplay(sec) {
-            const m = Math.floor(sec / 60).toString().padStart(2, '0');
-            const s = (sec % 60).toString().padStart(2, '0');
-            document.getElementById('timer-display').innerText = `${m}:${s}`;
-        }
-    </script>
+      });
+    });
+  </script>
 </body>
 </html>
