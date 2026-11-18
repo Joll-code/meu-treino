@@ -1248,33 +1248,33 @@
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-start justify-between gap-3">
                 <div>
                   <h3 class="text-sm font-bold text-white">1. Aquecimento</h3>
-                  <p class="text-xs text-zinc-400 mt-1">Esteira ou bicicleta em ritmo leve.</p>
+                  <p class="text-xs text-zinc-300 mt-1">Esteira ou bicicleta em ritmo leve.</p>
                 </div>
                 <span class="px-2.5 py-1 rounded-lg bg-zinc-800 text-blue-400 font-mono text-xs font-bold shrink-0">5 min</span>
               </div>
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-start justify-between gap-3">
                 <div>
                   <h3 class="text-sm font-bold text-white">2. Musculação</h3>
-                  <p class="text-xs text-zinc-400 mt-1">Seis exercícios, duas séries por exercício e intervalos controlados.</p>
+                  <p class="text-xs text-zinc-300 mt-1">Seis exercícios, duas séries por exercício e intervalos controlados.</p>
                 </div>
                 <span class="px-2.5 py-1 rounded-lg bg-zinc-800 text-blue-400 font-mono text-xs font-bold shrink-0">35 min</span>
               </div>
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-start justify-between gap-3">
                 <div>
                   <h3 class="text-sm font-bold text-white">3. Cardio</h3>
-                  <p class="text-xs text-zinc-400 mt-1">Caminhada ou bicicleta em intensidade moderada.</p>
+                  <p class="text-xs text-zinc-300 mt-1">Caminhada ou bicicleta em intensidade moderada.</p>
                 </div>
                 <span class="px-2.5 py-1 rounded-lg bg-zinc-800 text-emerald-400 font-mono text-xs font-bold shrink-0">8–10 min</span>
               </div>
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 flex items-start justify-between gap-3">
                 <div>
                   <h3 class="text-sm font-bold text-white">4. Desaceleração</h3>
-                  <p class="text-xs text-zinc-400 mt-1">Diminuir o ritmo e recuperar a respiração.</p>
+                  <p class="text-xs text-zinc-300 mt-1">Diminuir o ritmo e recuperar a respiração.</p>
                 </div>
-                <span class="px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-300 font-mono text-xs font-bold shrink-0">2 min</span>
+                <span class="px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-200 font-mono text-xs font-bold shrink-0">2 min</span>
               </div>
             </div>
-            <p class="text-xs text-zinc-300 bg-zinc-900/70 p-3.5 rounded-xl border border-zinc-800/90 leading-relaxed">
+            <p class="text-xs text-zinc-200 bg-zinc-900/90 p-3.5 rounded-xl border border-zinc-800 leading-relaxed">
               <strong class="text-blue-400">Intervalos:</strong> Os intervalos entre as séries devem ficar entre <strong>60 e 90 segundos</strong>. Se ela precisar de mais tempo para recuperar a respiração, pode descansar um pouco mais.
             </p>
           </section>
@@ -1283,39 +1283,39 @@
           <section aria-labelledby="progressao-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
             <div>
               <h2 id="progressao-heading" class="text-lg font-bold text-white">Progressão de treinamento</h2>
-              <p class="text-xs text-zinc-400 mt-0.5">Como Carol está começando, não recomendo aumentar as cargas rapidamente.</p>
+              <p class="text-xs text-zinc-300 mt-0.5">Como Carol está começando, não recomendo aumentar as cargas rapidamente.</p>
             </div>
-            <div class="overflow-hidden rounded-xl border border-borderSubtle">
+            <div class="overflow-hidden rounded-xl border border-borderSubtle bg-zinc-900/90">
               <table class="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
-                  <tr class="bg-zinc-900/90 text-zinc-400 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
+                  <tr class="bg-zinc-900 text-zinc-300 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
                     <th class="py-3 px-4 font-semibold w-1/3">Período</th>
                     <th class="py-3 px-4 font-semibold">Orientação</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-borderSubtle/80">
-                  <tr class="hover:bg-zinc-900/50 transition">
+                <tbody class="divide-y divide-borderSubtle">
+                  <tr class="hover:bg-zinc-800/60 transition">
                     <td class="py-3 px-4 font-semibold text-blue-400">Semanas 1 e 2</td>
-                    <td class="py-3 px-4 text-zinc-200">Aprender os movimentos e adaptar o corpo</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Aprender os movimentos e adaptar o corpo</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
+                  <tr class="hover:bg-zinc-800/60 transition">
                     <td class="py-3 px-4 font-semibold text-blue-400">Semanas 3 e 4</td>
-                    <td class="py-3 px-4 text-zinc-200">Melhorar execução e aumentar repetições quando possível</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Melhorar execução e aumentar repetições quando possível</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
+                  <tr class="hover:bg-zinc-800/60 transition">
                     <td class="py-3 px-4 font-semibold text-emerald-400">Semanas 5 e 6</td>
-                    <td class="py-3 px-4 text-zinc-200">Aumentar pequenas quantidades de carga se estiver preparada</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Aumentar pequenas quantidades de carga se estiver preparada</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
+                  <tr class="hover:bg-zinc-800/60 transition">
                     <td class="py-3 px-4 font-semibold text-amber-400">Semanas 7 e 8</td>
-                    <td class="py-3 px-4 text-zinc-200">Consolidar a evolução e reavaliar o treino</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Consolidar a evolução e reavaliar o treino</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-2">
               <h3 class="text-xs font-bold uppercase tracking-wider text-blue-400">Intensidade recomendada (Escala de Esforço 0 a 10)</h3>
-              <ul class="space-y-1.5 text-xs sm:text-sm text-zinc-300">
+              <ul class="space-y-1.5 text-xs sm:text-sm text-zinc-200">
                 <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span><strong>Primeiras semanas:</strong> esforço de 5 a 6 em uma escala de 0 a 10.</span></li>
                 <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span><strong>Após adaptação:</strong> esforço de 6 a 7 em uma escala de 0 a 10.</span></li>
                 <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span>Não realizar séries até a falha muscular neste início.</span></li>
@@ -1329,16 +1329,16 @@
             <div class="space-y-1">
               <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">Histórico clínico · -17 kg eliminados</span>
               <h2 id="mounjaro-heading" class="text-lg font-bold text-white pt-1">Cuidados especiais (Histórico com Mounjaro)</h2>
-              <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">Carol relata que utilizou Mounjaro durante quatro meses, atualmente não utiliza mais e eliminou 17 kg. Por isso, devemos ter atenção a cinco aspectos:</p>
+              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">Carol relata que utilizou Mounjaro durante quatro meses, atualmente não utiliza mais e eliminou 17 kg. Por isso, devemos ter atenção a cinco aspectos:</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
                 <h3 class="font-bold text-blue-400">1. Preservação muscular</h3>
-                <p class="text-zinc-300 leading-relaxed">O treinamento resistido será prioridade. Não queremos simplesmente que o peso na balança diminua: queremos reduzir gordura e preservar a musculatura.</p>
+                <p class="text-zinc-200 leading-relaxed">O treinamento resistido será prioridade. Não queremos simplesmente que o peso na balança diminua: queremos reduzir gordura e preservar a musculatura.</p>
               </div>
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
                 <h3 class="font-bold text-blue-400">2. Alimentação</h3>
-                <ul class="text-zinc-300 space-y-1 leading-relaxed">
+                <ul class="text-zinc-200 space-y-1 leading-relaxed">
                   <li>• Manter refeições regulares com fontes de proteína.</li>
                   <li>• Evitar treinar em jejum se isso provocar fraqueza.</li>
                   <li>• Procurar acompanhamento nutricional para adequar proteínas e calorias.</li>
@@ -1346,21 +1346,21 @@
               </div>
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
                 <h3 class="font-bold text-blue-400">3. Hidratação</h3>
-                <p class="text-zinc-300 leading-relaxed">Manter uma boa ingestão de água ao longo do dia, ajustada à necessidade individual e à orientação profissional.</p>
+                <p class="text-zinc-200 leading-relaxed">Manter uma boa ingestão de água ao longo do dia, ajustada à necessidade individual e à orientação profissional.</p>
               </div>
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
                 <h3 class="font-bold text-blue-400">4. Intensidade controlada</h3>
-                <p class="text-zinc-300 leading-relaxed">Não utilizar HIIT, circuitos exaustivos ou treinos de alta intensidade neste primeiro momento. O condicionamento será desenvolvido gradualmente.</p>
+                <p class="text-zinc-200 leading-relaxed">Não utilizar HIIT, circuitos exaustivos ou treinos de alta intensidade neste primeiro momento. O condicionamento será desenvolvido gradualmente.</p>
               </div>
             </div>
-            <div class="p-4 rounded-xl bg-red-950/40 border border-red-500/40 space-y-2.5">
+            <div class="p-4 rounded-xl bg-red-950/60 border border-red-500/50 space-y-2.5">
               <div class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
-                <div class="text-xs sm:text-sm text-red-200 leading-relaxed space-y-1.5">
+                <div class="text-xs sm:text-sm text-red-100 leading-relaxed space-y-1.5">
                   <p><strong class="text-red-300 font-semibold">5. Sinais de alerta:</strong> Se apresentar tontura, fraqueza incomum, náusea, palpitações ou mal-estar durante o treino, deve interromper a atividade e avaliar a situação. <strong>Dor no peito, desmaio ou falta de ar intensa exigem atendimento médico.</strong></p>
-                  <p class="text-amber-200/95 bg-black/30 p-2.5 rounded-lg border border-amber-500/30"><strong>Importante:</strong> a avaliação não deixa clara a resposta sobre a liberação médica para exercícios. É necessário confirmar essa informação antes de iniciar o programa.</p>
+                  <p class="text-amber-200 bg-black/50 p-2.5 rounded-lg border border-amber-500/40"><strong>Importante:</strong> a avaliação não deixa clara a resposta sobre a liberação médica para exercícios. É necessário confirmar essa informação antes de iniciar o programa.</p>
                 </div>
               </div>
             </div>
@@ -1370,18 +1370,18 @@
           <section aria-labelledby="evolucao-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
             <div>
               <h2 id="evolucao-heading" class="text-lg font-bold text-white">Como avaliar a evolução da Carol</h2>
-              <p class="text-xs text-zinc-400 mt-0.5">Não vamos avaliar o resultado somente pelo peso. Sugestão de acompanhamento a cada 30 dias:</p>
+              <p class="text-xs text-zinc-300 mt-0.5">Não vamos avaliar o resultado somente pelo peso. Sugestão de acompanhamento a cada 30 dias:</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm">
-              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Peso corporal</span></div>
-              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Circunferência abdominal</span></div>
-              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Circunferência da cintura e quadril</span></div>
-              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Medidas de coxas e braços</span></div>
-              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200"><span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span><span>Evolução das cargas nos exercícios</span></div>
-              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200"><span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span><span>Resistência cardiovascular</span></div>
-              <div class="sm:col-span-2 flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-200"><span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span><span>Fotografias de evolução, com autorização dela</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Peso corporal</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Circunferência abdominal</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Circunferência da cintura e quadril</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-blue-400 shrink-0"></span><span>Medidas de coxas e braços</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span><span>Evolução das cargas nos exercícios</span></div>
+              <div class="flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span><span>Resistência cardiovascular</span></div>
+              <div class="sm:col-span-2 flex items-center gap-2.5 p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-100 font-medium"><span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span><span>Fotografias de evolução, com autorização dela</span></div>
             </div>
-            <p class="text-xs text-zinc-400">O objetivo é observar se está perdendo medidas, ganhando força e preservando a musculatura.</p>
+            <p class="text-xs text-zinc-300">O objetivo é observar se está perdendo medidas, ganhando força e preservando a musculatura.</p>
           </section>
 
           <!-- 8. RECOMENDAÇÃO DE PLANEJAMENTO INICIAL -->
@@ -1398,9 +1398,9 @@
               </div>
               <span class="text-xs font-medium px-3 py-1 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">Reavaliação após 4 a 6 semanas</span>
             </div>
-            <div class="space-y-2.5 text-xs sm:text-sm text-zinc-300 leading-relaxed">
+            <div class="space-y-2.5 text-xs sm:text-sm text-zinc-200 leading-relaxed">
               <p><strong class="text-white font-semibold">Recomendação:</strong> Eu não colocaria Carol em um treino extremamente pesado agora. Ela já passou por uma perda considerável de peso (17 kg). O melhor caminho é construir uma boa base muscular, desenvolver força, melhorar a resistência e progredir gradualmente.</p>
-              <p class="text-zinc-400 text-xs bg-zinc-900/80 p-3.5 rounded-xl border border-zinc-800"><strong class="text-zinc-300">Acompanhamento:</strong> O treino deve ser reavaliado após <strong>4 a 6 semanas</strong>, considerando a resposta dela aos exercícios e a confirmação da liberação médica.</p>
+              <p class="text-zinc-300 text-xs bg-zinc-900/90 p-3.5 rounded-xl border border-zinc-800"><strong class="text-white">Acompanhamento:</strong> O treino deve ser reavaliado após <strong>4 a 6 semanas</strong>, considerando a resposta dela aos exercícios e a confirmação da liberação médica.</p>
             </div>
           </footer>
         `
@@ -1421,7 +1421,7 @@
         priorityHTML: `
           <div class="space-y-1">
             <strong class="text-white block">Prioridades do programa:</strong>
-            <span class="text-zinc-300 text-xs">Redução de gordura corporal · Preservação de massa muscular · Fortalecimento de pernas e glúteos · Desenvolvimento de força · Melhora gradual da disposição · Treino inicial adaptado</span>
+            <span class="text-zinc-200 text-xs">Redução de gordura corporal · Preservação de massa muscular · Fortalecimento de pernas e glúteos · Desenvolvimento de força · Melhora gradual da disposição · Treino inicial adaptado</span>
           </div>
           <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 shrink-0 self-start sm:self-auto">
             Mounjaro (3ª semana)
@@ -1763,43 +1763,43 @@
             <div class="flex flex-wrap items-center justify-between gap-2">
               <div>
                 <h2 id="sessao-luc-heading" class="text-lg font-bold text-white">Organização dos 50 minutos</h2>
-                <p class="text-xs sm:text-sm text-zinc-300 mt-1 leading-relaxed">
+                <p class="text-xs sm:text-sm text-zinc-200 mt-1 leading-relaxed">
                   Não precisamos preencher os 50 minutos com exercícios. <strong>O tempo disponível é um limite, não uma obrigação.</strong>
                 </p>
               </div>
               <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30 shrink-0">Limite: 50 min</span>
             </div>
-            <div class="overflow-hidden rounded-xl border border-borderSubtle">
+            <div class="overflow-hidden rounded-xl border border-borderSubtle bg-zinc-900/90">
               <table class="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
-                  <tr class="bg-zinc-900/90 text-zinc-400 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
+                  <tr class="bg-zinc-900 text-zinc-300 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
                     <th class="py-3 px-4 font-semibold">Etapa</th>
                     <th class="py-3 px-4 font-semibold text-right">Tempo</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-borderSubtle/80">
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-3 px-4 font-medium text-white">Aquecimento leve</td>
+                <tbody class="divide-y divide-borderSubtle">
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-zinc-100">Aquecimento leve</td>
                     <td class="py-3 px-4 text-right font-mono font-bold text-blue-400">5 min</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-3 px-4 font-medium text-white">Musculação</td>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-zinc-100">Musculação</td>
                     <td class="py-3 px-4 text-right font-mono font-bold text-blue-400">20–25 min</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-3 px-4 font-medium text-white">Cardio leve opcional</td>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-zinc-100">Cardio leve opcional</td>
                     <td class="py-3 px-4 text-right font-mono font-bold text-emerald-400">5 min</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-3 px-4 font-medium text-white">Recuperação e descanso</td>
-                    <td class="py-3 px-4 text-right font-mono font-bold text-zinc-300">Tempo restante</td>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-3 px-4 font-semibold text-zinc-100">Recuperação e descanso</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-zinc-200">Tempo restante</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <div class="text-xs text-zinc-300 bg-zinc-900/70 p-3.5 rounded-xl border border-zinc-800/90 space-y-1.5 leading-relaxed">
+            <div class="text-xs text-zinc-200 bg-zinc-900/90 p-3.5 rounded-xl border border-zinc-800 space-y-1.5 leading-relaxed">
               <p><strong class="text-blue-400">Intervalo entre séries:</strong> 60 a 90 segundos, podendo aumentar para <strong>120 segundos</strong> se necessário.</p>
-              <p class="text-zinc-400">O objetivo é concluir os 4 exercícios com boa técnica e sem exaustão, utilizando o tempo restante para descansar e recuperar o fôlego.</p>
+              <p class="text-zinc-300">O objetivo é concluir os 4 exercícios com boa técnica e sem exaustão, utilizando o tempo restante para descansar e recuperar o fôlego.</p>
             </div>
           </section>
 
@@ -1807,39 +1807,39 @@
           <section aria-labelledby="progressao-luc-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
             <div>
               <h2 id="progressao-luc-heading" class="text-lg font-bold text-white">Progressão nas primeiras 8 semanas</h2>
-              <p class="text-xs text-zinc-400 mt-0.5">Como Luciene relata baixa energia, vamos trabalhar com uma adaptação mais cuidadosa.</p>
+              <p class="text-xs text-zinc-300 mt-0.5">Como Luciene relata baixa energia, vamos trabalhar com uma adaptação mais cuidadosa.</p>
             </div>
-            <div class="overflow-hidden rounded-xl border border-borderSubtle">
+            <div class="overflow-hidden rounded-xl border border-borderSubtle bg-zinc-900/90">
               <table class="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
-                  <tr class="bg-zinc-900/90 text-zinc-400 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
+                  <tr class="bg-zinc-900 text-zinc-300 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
                     <th class="py-3 px-4 font-semibold w-1/3">Período</th>
                     <th class="py-3 px-4 font-semibold">Estratégia</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-borderSubtle/80">
-                  <tr class="hover:bg-zinc-900/50 transition">
+                <tbody class="divide-y divide-borderSubtle">
+                  <tr class="hover:bg-zinc-800/60 transition">
                     <td class="py-3 px-4 font-semibold text-blue-400">Semanas 1–2</td>
-                    <td class="py-3 px-4 text-zinc-200">Cargas leves, aprender movimentos e avaliar tolerância</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Cargas leves, aprender movimentos e avaliar tolerância</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
+                  <tr class="hover:bg-zinc-800/60 transition">
                     <td class="py-3 px-4 font-semibold text-blue-400">Semanas 3–4</td>
-                    <td class="py-3 px-4 text-zinc-200">Melhorar execução e manter regularidade</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Melhorar execução e manter regularidade</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
+                  <tr class="hover:bg-zinc-800/60 transition">
                     <td class="py-3 px-4 font-semibold text-emerald-400">Semanas 5–6</td>
-                    <td class="py-3 px-4 text-zinc-200">Aumentar pequenas quantidades de carga se estiver bem adaptada</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Aumentar pequenas quantidades de carga se estiver bem adaptada</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
+                  <tr class="hover:bg-zinc-800/60 transition">
                     <td class="py-3 px-4 font-semibold text-amber-400">Semanas 7–8</td>
-                    <td class="py-3 px-4 text-zinc-200">Consolidar força e reavaliar evolução</td>
+                    <td class="py-3 px-4 text-zinc-100 font-medium">Consolidar força e reavaliar evolução</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-2">
               <h3 class="text-xs font-bold uppercase tracking-wider text-blue-400">Intensidade recomendada (Escala de Esforço 0 a 10)</h3>
-              <ul class="space-y-1.5 text-xs sm:text-sm text-zinc-300">
+              <ul class="space-y-1.5 text-xs sm:text-sm text-zinc-200">
                 <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span>Começar com <strong>esforço de 4 a 5</strong> em uma escala de 0 a 10.</span></li>
                 <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span>Evoluir gradualmente para <strong>5 a 6</strong>.</span></li>
                 <li class="flex items-start gap-2"><span class="text-blue-400 font-bold">•</span><span>Não realizar exercícios até a falha muscular.</span></li>
@@ -1854,37 +1854,37 @@
             <div class="space-y-1">
               <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">Atenção prioritária · Uso há 3 semanas</span>
               <h2 id="mounjaro-luc-heading" class="text-lg font-bold text-white pt-1">Cuidados especiais com o Mounjaro</h2>
-              <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">Este é o ponto que merece maior atenção no caso da Luciene. Ela está utilizando Mounjaro há apenas três semanas e relata baixa disposição:</p>
+              <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">Este é o ponto que merece maior atenção no caso da Luciene. Ela está utilizando Mounjaro há apenas três semanas e relata baixa disposição:</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
                 <h3 class="font-bold text-blue-400">1. Dias pós-aplicação</h3>
-                <p class="text-zinc-300 leading-relaxed">Evitar treinos intensos nos <strong>dois dias posteriores à aplicação</strong>, caso sejam os dias em que ela apresenta mais efeitos colaterais.</p>
+                <p class="text-zinc-200 leading-relaxed">Evitar treinos intensos nos <strong>dois dias posteriores à aplicação</strong>, caso sejam os dias em que ela apresenta mais efeitos colaterais.</p>
               </div>
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
                 <h3 class="font-bold text-blue-400">2. Critério para não treinar</h3>
-                <p class="text-zinc-300 leading-relaxed">Não treinar se estiver com <strong>tontura, fraqueza importante, náuseas intensas ou sinais de desidratação</strong>.</p>
+                <p class="text-zinc-200 leading-relaxed">Não treinar se estiver com <strong>tontura, fraqueza importante, náuseas intensas ou sinais de desidratação</strong>.</p>
               </div>
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
                 <h3 class="font-bold text-blue-400">3. Hidratação</h3>
-                <p class="text-zinc-300 leading-relaxed">Manter hidratação adequada durante todo o dia, antes, durante e após o treino.</p>
+                <p class="text-zinc-200 leading-relaxed">Manter hidratação adequada durante todo o dia, antes, durante e após o treino.</p>
               </div>
               <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
                 <h3 class="font-bold text-blue-400">4. Alimentação e Proteínas</h3>
-                <p class="text-zinc-300 leading-relaxed">Respeitar as refeições e a ingestão de proteínas orientadas pela nutricionista.</p>
+                <p class="text-zinc-200 leading-relaxed">Respeitar as refeições e a ingestão de proteínas orientadas pela nutricionista.</p>
               </div>
               <div class="sm:col-span-2 p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 space-y-1">
                 <h3 class="font-bold text-blue-400">5. Sem treinos exaustivos</h3>
-                <p class="text-zinc-300 leading-relaxed">Evitar HIIT, circuitos intensos e exercícios até a exaustão neste início.</p>
+                <p class="text-zinc-200 leading-relaxed">Evitar HIIT, circuitos intensos e exercícios até a exaustão neste início.</p>
               </div>
             </div>
-            <div class="p-4 rounded-xl bg-red-950/40 border border-red-500/40">
+            <div class="p-4 rounded-xl bg-red-950/60 border border-red-500/50">
               <div class="flex items-start gap-3">
                 <svg class="w-5 h-5 text-red-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
-                <p class="text-xs sm:text-sm text-red-200 leading-relaxed">
-                  <strong class="text-red-300 font-semibold">Orientação médica:</strong> Se a baixa energia for persistente, estiver piorando ou vier acompanhada de outros sintomas, é importante conversar com o médico que acompanha o tratamento. <strong>A dose e o horário do medicamento não devem ser alterados por conta própria.</strong>
+                <p class="text-xs sm:text-sm text-red-100 leading-relaxed">
+                  <strong class="text-red-300 font-semibold">Orientação médica:</strong> Se a baixa energia beirar a exaustão ou vier acompanhada de outros sintomas, converse com seu médico. <strong>A dose e o horário do medicamento não devem ser alterados por conta própria.</strong>
                 </p>
               </div>
             </div>
@@ -1894,49 +1894,49 @@
           <section aria-labelledby="avaliacao-luc-heading" class="bg-graphite border border-borderSubtle rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
             <div>
               <h2 id="avaliacao-luc-heading" class="text-lg font-bold text-white">Avaliação de resultados</h2>
-              <p class="text-xs text-zinc-400 mt-0.5">Recomendo uma reavaliação completa a cada 30 dias, acompanhando indicadores semanais e mensais:</p>
+              <p class="text-xs text-zinc-300 mt-0.5">Recomendo uma reavaliação completa a cada 30 dias, acompanhando indicadores semanais e mensais:</p>
             </div>
-            <div class="overflow-hidden rounded-xl border border-borderSubtle">
+            <div class="overflow-hidden rounded-xl border border-borderSubtle bg-zinc-900/90">
               <table class="w-full text-left border-collapse text-xs sm:text-sm">
                 <thead>
-                  <tr class="bg-zinc-900/90 text-zinc-400 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
+                  <tr class="bg-zinc-900 text-zinc-300 uppercase text-[11px] tracking-wider border-b border-borderSubtle">
                     <th class="py-3 px-4 font-semibold">Indicador</th>
                     <th class="py-3 px-4 font-semibold text-right">Frequência</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-borderSubtle/80">
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-2.5 px-4 text-zinc-200">Peso corporal</td>
+                <tbody class="divide-y divide-borderSubtle">
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Peso corporal</td>
                     <td class="py-2.5 px-4 text-right font-semibold text-blue-400">Semanal</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-2.5 px-4 text-zinc-200">Circunferência abdominal</td>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Circunferência abdominal</td>
                     <td class="py-2.5 px-4 text-right font-semibold text-emerald-400">Mensal</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-2.5 px-4 text-zinc-200">Circunferência da cintura</td>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Circunferência da cintura</td>
                     <td class="py-2.5 px-4 text-right font-semibold text-emerald-400">Mensal</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-2.5 px-4 text-zinc-200">Circunferência do quadril</td>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Circunferência do quadril</td>
                     <td class="py-2.5 px-4 text-right font-semibold text-emerald-400">Mensal</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-2.5 px-4 text-zinc-200">Medidas das pernas e braços</td>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Medidas das pernas e braços</td>
                     <td class="py-2.5 px-4 text-right font-semibold text-emerald-400">Mensal</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-2.5 px-4 text-zinc-200">Evolução das cargas</td>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Evolução das cargas</td>
                     <td class="py-2.5 px-4 text-right font-semibold text-blue-400">Semanal</td>
                   </tr>
-                  <tr class="hover:bg-zinc-900/50 transition">
-                    <td class="py-2.5 px-4 text-zinc-200">Disposição e condicionamento</td>
+                  <tr class="hover:bg-zinc-800/60 transition">
+                    <td class="py-2.5 px-4 text-zinc-100 font-medium">Disposição e condicionamento</td>
                     <td class="py-2.5 px-4 text-right font-semibold text-blue-400">Semanal</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p class="text-xs text-zinc-400">Não devemos olhar apenas para o peso. A preservação da massa muscular e a melhora da capacidade física são resultados igualmente importantes.</p>
+            <p class="text-xs text-zinc-300">Não devemos olhar apenas para o peso. A preservação da massa muscular e a melhora da capacidade física são resultados igualmente importantes.</p>
           </section>
 
           <!-- 10. RECOMENDAÇÃO FINAL (LUCIENE) -->
@@ -1953,9 +1953,9 @@
               </div>
               <span class="text-xs font-medium px-3 py-1 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">Manter nas primeiras 4 semanas</span>
             </div>
-            <div class="space-y-2.5 text-xs sm:text-sm text-zinc-300 leading-relaxed">
+            <div class="space-y-2.5 text-xs sm:text-sm text-zinc-200 leading-relaxed">
               <p><strong class="text-white font-semibold">Minha recomendação final:</strong> Eu manteria esse treino durante as primeiras quatro semanas, desde que Luciene apresente boa tolerância aos exercícios. Uma diferença importante entre ela e Carol: não tentaria acelerar o emagrecimento aumentando o gasto calórico através de treinos pesados. Primeiro precisamos melhorar a disposição e criar consistência.</p>
-              <p class="text-zinc-400 text-xs bg-zinc-900/80 p-3.5 rounded-xl border border-zinc-800">Com uma boa adaptação, poderemos aumentar gradualmente o volume de musculação e o cardio, sempre acompanhando a resposta dela. O sucesso da Luciene será conseguir treinar com regularidade, ganhar força e reduzir gordura sem comprometer sua saúde e recuperação.</p>
+              <p class="text-zinc-300 text-xs bg-zinc-900/90 p-3.5 rounded-xl border border-zinc-800">Com uma boa adaptação, poderemos aumentar gradualmente o volume de musculação e o cardio, sempre acompanhando a resposta dela. O sucesso da Luciene será conseguir treinar com regularidade, ganha força e reduzir gordura sem comprometer sua saúde e recuperação.</p>
             </div>
           </footer>
         `
